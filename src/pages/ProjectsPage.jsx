@@ -7,9 +7,10 @@ export default function ProjectsPage() {
   return (
     <PageWrapper>
       <PageHero
-        badge="Our Work"
-        title="Projects we're proud of"
-        subtitle="Real products, real clients, measurable outcomes. Every project is a partnership we take seriously."
+        eyebrow="Work"
+        title="Selected"
+        titleGrad="projects"
+        subtitle="A sample of products we've designed, built, and shipped for our clients."
       />
       <Projects />
       <HomeCTA />

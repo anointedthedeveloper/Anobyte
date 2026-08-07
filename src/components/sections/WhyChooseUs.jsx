@@ -1,105 +1,120 @@
-import { useEffect, useRef, useState } from 'react'
-import { motion, useInView } from 'framer-motion'
-import { HiCheckCircle, HiLightningBolt, HiShieldCheck, HiUserGroup, HiClock } from 'react-icons/hi'
-import SectionBadge from '../ui/SectionBadge'
+import { motion } from 'framer-motion'
+import { HiCheckCircle } from 'react-icons/hi'
+import { C, G, S, F } from '../../styles/tokens'
+import { Section, SectionHeader } from '../ui/Wrap'
 
-const stats = [
-  { value: 150, suffix: '+',   label: 'Projects Completed', icon: HiCheckCircle, bg: '#EEF0FF', ic: '#4B6EF5' },
-  { value: 98,  suffix: '%',   label: 'Happy Clients',      icon: HiUserGroup,   bg: '#F3EAFF', ic: '#8B3FF5' },
-  { value: 5,   suffix: '+',   label: 'Years Experience',   icon: HiClock,       bg: '#ECFDF5', ic: '#059669' },
-  { value: 99,  suffix: '.9%', label: 'Uptime Guarantee',   icon: HiShieldCheck, bg: '#FFFBEB', ic: '#D97706' },
-  { value: 24,  suffix: '/7',  label: 'Support Available',  icon: HiLightningBolt, bg: '#FFF1F2', ic: '#E11D48' },
+const reasons = [
+  { title: 'Senior engineers only',        desc: 'Every engagement is led by engineers with 5+ years of production experience. No juniors learning on your budget.' },
+  { title: 'Transparent by default',       desc: 'Weekly updates, a shared project board, and an open line of communication. You always know exactly where things stand.' },
+  { title: 'Milestones, not surprises',    desc: 'We scope carefully and plan rigorously. Deliverables are agreed upfront. Scope changes go through a clear change process.' },
+  { title: 'Built for the long term',      desc: "Clean code, good documentation, proper tests. We hand over software you can maintain and grow — not a black box." },
+  { title: 'Post-launch support included', desc: 'We stay around after launch. Monitoring, bug fixes, and iterative improvements are part of how we work.' },
+  { title: 'One team, full ownership',     desc: 'We own the outcome end-to-end — design, engineering, QA, and deployment — so nothing falls through the cracks.' },
 ]
 
-const advantages = [
-  { title: 'Senior-only engineering',       desc: 'Every project is led by senior engineers with 5+ years of production experience — no juniors learning on your dime.' },
-  { title: 'Transparent communication',     desc: 'Weekly updates, dedicated Slack channels, and live dashboards mean you\'re never in the dark.' },
-  { title: 'On-time, on-budget delivery',   desc: 'Structured sprint planning and rigorous process ensure we hit milestones without quality compromise.' },
-  { title: 'Post-launch support',           desc: 'Our relationship doesn\'t end at launch — we provide ongoing maintenance, monitoring, and iteration.' },
+const pillars = [
+  { label: 'Code Quality',    desc: 'Clean, tested, documented',           accent: C.blue500,   bg: C.blue50 },
+  { label: 'Communication',   desc: 'Weekly syncs + shared board',         accent: C.violet500, bg: C.violetLight },
+  { label: 'Delivery',        desc: 'On scope, on schedule',               accent: '#009955',   bg: '#EDFFF7' },
+  { label: 'Support',         desc: 'Post-launch & ongoing maintenance',   accent: '#D97706',   bg: '#FFFBEB' },
 ]
-
-function Counter({ value, suffix, duration = 1.8 }) {
-  const [count, setCount] = useState(0)
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true })
-  useEffect(() => {
-    if (!inView) return
-    const step = value / (duration * 60)
-    let cur = 0
-    const t = setInterval(() => {
-      cur = Math.min(cur + step, value)
-      setCount(Math.floor(cur))
-      if (cur >= value) clearInterval(t)
-    }, 1000 / 60)
-    return () => clearInterval(t)
-  }, [inView, value, duration])
-  return <span ref={ref}>{count}{suffix}</span>
-}
 
 export default function WhyChooseUs() {
   return (
-    <section className="py-24 lg:py-32 overflow-hidden" style={{ background: '#ffffff' }}>
-      <div className="max-w-7xl mx-auto px-5 sm:px-8">
-        <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
-          {/* Left */}
-          <motion.div initial={{ opacity: 0, x: -36 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}>
-            <div className="mb-6"><SectionBadge color="green">Why AnoByte</SectionBadge></div>
-            <h2 className="text-4xl lg:text-5xl font-bold font-heading tracking-tight mb-6" style={{ color: '#0F172A' }}>
-              The difference is in <span className="text-gradient">the details</span>
-            </h2>
-            <p className="text-lg leading-relaxed mb-9" style={{ color: '#475569' }}>
-              We combine deep technical expertise with a relentless focus on business outcomes. We don't just write code — we solve problems, create value, and build lasting digital assets.
-            </p>
-            <div className="space-y-5">
-              {advantages.map((a, i) => (
-                <motion.div
-                  key={a.title}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.48, delay: i * 0.09 }}
-                  className="flex gap-3.5"
-                >
-                  <HiCheckCircle style={{ color: '#4B6EF5', flexShrink: 0, marginTop: 2 }} size={18} />
-                  <div>
-                    <h4 className="font-semibold font-heading mb-1" style={{ color: '#0F172A' }}>{a.title}</h4>
-                    <p className="text-sm leading-relaxed" style={{ color: '#475569' }}>{a.desc}</p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+    <Section bg={C.bg}>
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'start' }} className="why-grid">
 
-          {/* Right — stats */}
-          <motion.div initial={{ opacity: 0, x: 36 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }} className="relative">
-            <div className="absolute inset-0 rounded-3xl" style={{ background: 'linear-gradient(135deg, #EEF0FF 0%, #F3EAFF 100%)' }} />
-            <div className="absolute inset-0 rounded-3xl bg-grid opacity-30" />
-            <div className="relative p-8 lg:p-10">
-              <div className="grid grid-cols-2 gap-4">
-                {stats.map((s, i) => (
+        {/* Left */}
+        <motion.div
+          initial={{ opacity: 0, x: -28 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <p style={{ fontSize: 11, fontWeight: 700, fontFamily: F.head, letterSpacing: '0.14em', textTransform: 'uppercase', color: C.blue500, marginBottom: 14 }}>
+            Why AnoByte
+          </p>
+          <h2 style={{ fontFamily: F.head, fontWeight: 800, fontSize: 'clamp(1.8rem,3vw,2.6rem)', letterSpacing: '-0.033em', lineHeight: 1.12, color: C.ink, marginBottom: 18 }}>
+            How we're different
+          </h2>
+          <p style={{ fontSize: 17, lineHeight: 1.75, color: C.body, marginBottom: 36 }}>
+            We've seen what goes wrong on software projects — poor communication, scope creep, brittle code. We've built our process specifically to avoid all of it.
+          </p>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+            {reasons.map((r, i) => (
+              <motion.div
+                key={r.title}
+                initial={{ opacity: 0, x: -18 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.45, delay: i * 0.08 }}
+                style={{ display: 'flex', gap: 14 }}
+              >
+                <HiCheckCircle style={{ color: C.blue500, flexShrink: 0, marginTop: 2 }} size={18} />
+                <div>
+                  <p style={{ fontFamily: F.head, fontWeight: 700, fontSize: 15, color: C.ink, marginBottom: 3 }}>{r.title}</p>
+                  <p style={{ fontSize: 14, lineHeight: 1.65, color: C.body }}>{r.desc}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Right — dark panel */}
+        <motion.div
+          initial={{ opacity: 0, x: 28 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+          style={{ position: 'relative', borderRadius: 24, overflow: 'hidden' }}
+        >
+          <div style={{ background: '#06081A', padding: 36, position: 'relative' }}>
+            <div className="bg-grid" style={{ position: 'absolute', inset: 0, opacity: 0.1 }} />
+            <div style={{ position: 'absolute', top: -40, right: -40, width: 200, height: 200, borderRadius: '50%', background: C.blue500, filter: 'blur(80px)', opacity: 0.3 }} />
+            <div style={{ position: 'absolute', bottom: -30, left: -30, width: 160, height: 160, borderRadius: '50%', background: C.violet500, filter: 'blur(70px)', opacity: 0.22 }} />
+
+            <div style={{ position: 'relative' }}>
+              <p style={{ fontSize: 11, fontWeight: 700, fontFamily: F.head, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', marginBottom: 20 }}>
+                Our Four Pillars
+              </p>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
+                {pillars.map((p, i) => (
                   <motion.div
-                    key={s.label}
-                    initial={{ opacity: 0, scale: 0.88 }}
+                    key={p.label}
+                    initial={{ opacity: 0, scale: 0.9 }}
                     whileInView={{ opacity: 1, scale: 1 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.45, delay: i * 0.09 }}
-                    className={`bg-white rounded-2xl p-5 text-center ${i === 4 ? 'col-span-2' : ''}`}
-                    style={{ boxShadow: '0 1px 3px rgba(0,0,0,0.04), 0 4px 24px rgba(0,0,0,0.05)' }}
+                    transition={{ duration: 0.4, delay: i * 0.1 }}
+                    style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 16, padding: '18px 18px 20px' }}
                   >
-                    <div className="w-11 h-11 rounded-xl flex items-center justify-center mx-auto mb-3" style={{ background: s.bg }}>
-                      <s.icon style={{ color: s.ic }} size={20} />
+                    <div style={{ width: 36, height: 36, borderRadius: 10, background: `${p.accent}22`, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 12 }}>
+                      <div style={{ width: 10, height: 10, borderRadius: '50%', background: p.accent }} />
                     </div>
-                    <div className="text-2xl font-black font-heading mb-1" style={{ color: s.ic }}>
-                      <Counter value={s.value} suffix={s.suffix} />
-                    </div>
-                    <p className="text-xs font-medium" style={{ color: '#475569' }}>{s.label}</p>
+                    <p style={{ fontFamily: F.head, fontWeight: 700, fontSize: 14, color: '#fff', marginBottom: 4 }}>{p.label}</p>
+                    <p style={{ fontSize: 12, lineHeight: 1.55, color: 'rgba(255,255,255,0.42)' }}>{p.desc}</p>
                   </motion.div>
                 ))}
               </div>
+
+              {/* Divider */}
+              <div style={{ height: 1, background: 'rgba(255,255,255,0.07)', margin: '24px 0' }} />
+
+              <p style={{ fontSize: 13, lineHeight: 1.7, color: 'rgba(255,255,255,0.45)', fontStyle: 'italic' }}>
+                "We treat every project like it's our own product — because if it fails, that's on us too."
+              </p>
+              <p style={{ fontSize: 12, fontWeight: 600, fontFamily: F.head, color: 'rgba(255,255,255,0.28)', marginTop: 8 }}>
+                — AnoByte Engineering Team
+              </p>
             </div>
-          </motion.div>
-        </div>
+          </div>
+        </motion.div>
       </div>
-    </section>
+
+      <style>{`
+        .why-grid { grid-template-columns: 1fr 1fr; }
+        @media (max-width: 840px) { .why-grid { grid-template-columns: 1fr; } }
+      `}</style>
+    </Section>
   )
 }

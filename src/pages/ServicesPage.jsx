@@ -8,9 +8,10 @@ export default function ServicesPage() {
   return (
     <PageWrapper>
       <PageHero
-        badge="What We Build"
-        title="Services that drive real results"
-        subtitle="From concept to deployment — end-to-end digital solutions engineered for scale, speed, and impact."
+        eyebrow="Services"
+        title="What we"
+        titleGrad="build"
+        subtitle="Full-service product engineering — from the first wireframe to a live, monitored production system."
       />
       <Services />
       <Technologies />

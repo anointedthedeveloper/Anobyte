@@ -1,22 +1,58 @@
-// Design tokens — used in inline styles where needed
-export const colors = {
-  primary: '#2563EB',
-  primaryLight: '#EFF6FF',
-  primaryMid: '#DBEAFE',
-  primaryDark: '#1D4ED8',
-  dark: '#0F172A',
-  gray: '#475569',
-  light: '#F8FAFC',
-  border: '#E2E8F0',
-  success: '#10B981',
-  white: '#FFFFFF',
+// Brand colours — tuned to favicon.png logo (electric blue → deep violet)
+export const C = {
+  // blues — slightly warmer, closer to logo
+  blue50:       '#EBF0FF',
+  blue100:      '#D4DCFF',
+  blue200:      '#A8B8FF',
+  blue500:      '#4F72F8',   // primary blue (logo left leg)
+  blue600:      '#3A5CE0',
+
+  // violets — rich, from logo right leg
+  violet500:    '#8B3FF5',
+  violet600:    '#7530E0',
+  violetLight:  '#F2EEFF',
+
+  // ink
+  ink:          '#0B0E2A',
+  ink2:         '#1C2040',
+  ink3:         '#3A4070',
+
+  // text
+  body:         '#52597A',
+  muted:        '#96A0C0',
+  subtle:       '#BCC4DC',
+
+  // ui
+  white:        '#FFFFFF',
+  bg:           '#F5F7FC',
+  border:       '#E5E8F2',
+
+  // status
+  green:        '#00C87A',
+  amber:        '#F59E0B',
+  rose:         '#EC4899',
 }
 
-export const shadows = {
-  card: '0 1px 3px rgba(0,0,0,0.04), 0 4px 24px rgba(0,0,0,0.05)',
-  cardHover: '0 8px 40px rgba(37,99,235,0.12), 0 2px 8px rgba(0,0,0,0.06)',
-  button: '0 4px 14px rgba(37,99,235,0.3)',
-  buttonHover: '0 8px 25px rgba(37,99,235,0.45)',
-  glass: '0 8px 32px rgba(0,0,0,0.06)',
-  nav: '0 1px 0 rgba(0,0,0,0.06), 0 4px 20px rgba(0,0,0,0.04)',
+export const G = {
+  // exact logo gradient direction
+  brand:  'linear-gradient(135deg, #4F72F8 0%, #8B3FF5 100%)',
+  brandH: 'linear-gradient(135deg, #3A5CE0 0%, #7530E0 100%)',
+  logoOrb:'linear-gradient(140deg, #4BBCFF 0%, #4F72F8 45%, #8B3FF5 100%)',
+  dark:   'linear-gradient(160deg, #0B0E2A 0%, #141840 100%)',
 }
+
+export const S = {
+  card:  '0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06)',
+  cardH: '0 4px 24px rgba(79,114,248,0.16), 0 2px 8px rgba(0,0,0,0.06)',
+  btn:   '0 4px 14px rgba(79,114,248,0.40)',
+  btnH:  '0 6px 22px rgba(79,114,248,0.54)',
+  nav:   '0 1px 0 rgba(0,0,0,0.05), 0 4px 16px rgba(0,0,0,0.05)',
+}
+
+export const F = {
+  head: '"Space Grotesk", sans-serif',
+  body: '"Inter", sans-serif',
+}
+
+export const maxW  = '1180px'
+export const gutter = 'clamp(16px, 4vw, 48px)'

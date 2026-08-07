@@ -1,124 +1,121 @@
 import { motion } from 'framer-motion'
-import { HiHeart, HiLightBulb, HiShieldCheck, HiTrendingUp } from 'react-icons/hi'
+import { C, S, F, G } from '../../styles/tokens'
+import { Section, SectionHeader } from '../ui/Wrap'
 
 const values = [
-  { icon: HiLightBulb,   title: 'Innovation First',          desc: 'We constantly explore emerging tech to deliver solutions ahead of the curve.',           bg: '#FFFBEB', ic: '#D97706' },
-  { icon: HiShieldCheck, title: 'Quality Without Compromise', desc: 'Every line of code is clean, tested, and production-ready. We take pride in excellence.', bg: '#EEF0FF', ic: '#4B6EF5' },
-  { icon: HiHeart,       title: 'Client Partnership',         desc: 'We treat every client\'s project as our own. Your success is our success.',               bg: '#FFF1F2', ic: '#E11D48' },
-  { icon: HiTrendingUp,  title: 'Results-Driven',             desc: 'Great code is the means, not the end. We measure our work by the business impact created.',bg: '#ECFDF5', ic: '#059669' },
+  { title: 'Quality first',             desc: 'We do not ship work we are not proud of. Every deliverable is reviewed, tested, and documented before it leaves our hands.',                accent: C.blue500,   bg: C.blue50 },
+  { title: 'Honest communication',      desc: 'If something is taking longer than planned, or a technical decision needs revisiting, we say so early — not after it has become a problem.', accent: C.violet500, bg: C.violetLight },
+  { title: 'Client ownership',          desc: 'You own everything we build. Source code, designs, documentation — all of it. We are here to build your asset, not create a dependency.',   accent: '#009955',   bg: '#EDFFF7' },
+  { title: 'Long-term thinking',        desc: 'We write code that your next developer can understand. Good architecture and clear documentation are not optional extras.',                   accent: '#D97706',   bg: '#FFFBEB' },
 ]
 
 const timeline = [
-  { year: '2019', title: 'Founded',            desc: 'AnoByte launched with a mission to bridge the gap between great ideas and great software.' },
-  { year: '2020', title: 'First 20 Clients',   desc: 'Rapidly grew across fintech, healthcare, and e-commerce with high client retention.' },
-  { year: '2021', title: 'Mobile Division',    desc: 'Launched a dedicated mobile team enabling full-stack iOS and Android solutions.' },
-  { year: '2022', title: 'Cloud & DevOps',     desc: 'Expanded into cloud architecture and DevOps, offering end-to-end infrastructure.' },
-  { year: '2023', title: '100+ Projects',      desc: 'Crossed 100 successfully delivered projects with 98% client satisfaction rate.' },
-  { year: '2024', title: 'AI Integration',     desc: 'Integrated AI/ML capabilities into our service stack, future-proofing client solutions.' },
+  { year: '2019', title: 'Founded',                desc: 'AnoByte started as a two-person consultancy focused on helping small businesses get properly built software.' },
+  { year: '2020', title: 'First enterprise client', desc: 'Landed our first enterprise engagement — a custom ERP integration for a manufacturing business.' },
+  { year: '2021', title: 'Mobile practice',         desc: 'Built out a dedicated mobile engineering team, enabling full-stack React Native delivery.' },
+  { year: '2022', title: 'Cloud & DevOps',          desc: 'Expanded into cloud architecture, infrastructure-as-code, and managed DevOps services.' },
+  { year: '2023', title: 'Full-service studio',     desc: 'Grew into a full-service product studio covering strategy, design, engineering, and support.' },
+  { year: '2024', title: 'Continued growth',        desc: 'Focused on deepening expertise in AI-integrated products and high-scale backend systems.' },
 ]
 
 export default function About() {
   return (
-    <section className="py-16 lg:py-24" style={{ background: '#ffffff' }}>
-      <div className="max-w-7xl mx-auto px-5 sm:px-8 space-y-16">
-
-        {/* Mission & Vision */}
-        <div className="grid md:grid-cols-2 gap-6">
+    <>
+      {/* Mission & Vision */}
+      <Section bg="#fff">
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }} className="about-split">
           <motion.div
-            initial={{ opacity: 0, x: -28 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="rounded-3xl p-8 text-white"
-            style={{ background: 'linear-gradient(135deg, #4B6EF5 0%, #8B3FF5 100%)' }}
+            style={{ background: '#06081A', borderRadius: 20, padding: '36px 36px 40px', position: 'relative', overflow: 'hidden' }}
           >
-            <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style={{ background: 'rgba(255,255,255,0.18)' }}>
-              <HiLightBulb size={22} className="text-white" />
+            <div className="bg-grid" style={{ position: 'absolute', inset: 0, opacity: 0.08 }} />
+            <div style={{ position: 'absolute', top: -40, right: -40, width: 180, height: 180, borderRadius: '50%', background: C.blue500, filter: 'blur(80px)', opacity: 0.3 }} />
+            <div style={{ position: 'relative' }}>
+              <p style={{ fontSize: 10, fontWeight: 700, fontFamily: F.head, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.3)', marginBottom: 16 }}>Our Mission</p>
+              <h3 style={{ fontFamily: F.head, fontWeight: 800, fontSize: 'clamp(1.4rem,2.2vw,1.9rem)', letterSpacing: '-0.03em', lineHeight: 1.2, color: '#fff', marginBottom: 16 }}>
+                Build software that actually works.
+              </h3>
+              <p style={{ fontSize: 15, lineHeight: 1.75, color: 'rgba(255,255,255,0.52)' }}>
+                Not just software that demos well — software that performs in production, survives edge cases, and does not need to be rewritten in eighteen months.
+              </p>
             </div>
-            <h3 className="font-heading font-bold text-2xl mb-3">Our Mission</h3>
-            <p className="leading-relaxed" style={{ color: 'rgba(255,255,255,0.78)' }}>
-              To empower businesses of every size with world-class digital products that drive growth, efficiency, and competitive advantage — delivering engineering excellence on every engagement.
-            </p>
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 28 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="bg-white rounded-3xl p-8"
-            style={{ border: '1px solid #E2E8F0', boxShadow: '0 1px 3px rgba(0,0,0,0.04), 0 4px 24px rgba(0,0,0,0.05)' }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            style={{ background: C.bg, borderRadius: 20, padding: '36px 36px 40px', border: `1px solid ${C.border}` }}
           >
-            <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5" style={{ background: '#F3EAFF' }}>
-              <HiTrendingUp style={{ color: '#8B3FF5' }} size={22} />
-            </div>
-            <h3 className="font-heading font-bold text-2xl mb-3" style={{ color: '#0F172A' }}>Our Vision</h3>
-            <p className="leading-relaxed" style={{ color: '#475569' }}>
-              To become the most trusted technology partner for ambitious businesses globally — recognized for technical excellence and the measurable, lasting outcomes we create for every client.
+            <p style={{ fontSize: 10, fontWeight: 700, fontFamily: F.head, letterSpacing: '0.14em', textTransform: 'uppercase', color: C.muted, marginBottom: 16 }}>Our Vision</p>
+            <h3 style={{ fontFamily: F.head, fontWeight: 800, fontSize: 'clamp(1.4rem,2.2vw,1.9rem)', letterSpacing: '-0.03em', lineHeight: 1.2, color: C.ink, marginBottom: 16 }}>
+              The most trusted engineering partner for ambitious teams.
+            </h3>
+            <p style={{ fontSize: 15, lineHeight: 1.75, color: C.body }}>
+              Trusted not because we are the biggest, but because we are consistent — clear communication, solid code, and a genuine long-term interest in the products we help build.
             </p>
           </motion.div>
         </div>
 
-        {/* Core Values */}
-        <div>
-          <motion.h3 initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-2xl font-bold font-heading text-center mb-8" style={{ color: '#0F172A' }}>
-            Core Values
-          </motion.h3>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {values.map((v, i) => (
-              <motion.div
-                key={v.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.48, delay: i * 0.09 }}
-                className="bg-white rounded-2xl p-5"
-                style={{ border: '1px solid #E2E8F0', boxShadow: '0 1px 3px rgba(0,0,0,0.04), 0 4px 24px rgba(0,0,0,0.05)' }}
-              >
-                <div className="w-11 h-11 rounded-xl flex items-center justify-center mb-4" style={{ background: v.bg }}>
-                  <v.icon style={{ color: v.ic }} size={20} />
+        <style>{`.about-split { grid-template-columns: 1fr 1fr; } @media(max-width:740px){ .about-split { grid-template-columns: 1fr; } }`}</style>
+      </Section>
+
+      {/* Values */}
+      <Section bg={C.bg}>
+        <SectionHeader eyebrow="What We Stand For" title="Our" titleGrad="values" />
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 16 }}>
+          {values.map((v, i) => (
+            <motion.div
+              key={v.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45, delay: i * 0.09 }}
+              style={{ background: '#fff', borderRadius: 16, border: `1px solid ${C.border}`, boxShadow: S.card, overflow: 'hidden' }}
+            >
+              <div style={{ height: 3, background: v.accent }} />
+              <div style={{ padding: '20px 22px 24px' }}>
+                <div style={{ width: 40, height: 40, borderRadius: 11, background: v.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 14 }}>
+                  <div style={{ width: 10, height: 10, borderRadius: '50%', background: v.accent }} />
                 </div>
-                <h4 className="font-heading font-semibold mb-2" style={{ color: '#0F172A' }}>{v.title}</h4>
-                <p className="text-sm leading-relaxed" style={{ color: '#475569' }}>{v.desc}</p>
-              </motion.div>
-            ))}
-          </div>
+                <h4 style={{ fontFamily: F.head, fontWeight: 700, fontSize: 15, color: C.ink, marginBottom: 8 }}>{v.title}</h4>
+                <p style={{ fontSize: 13, lineHeight: 1.7, color: C.body }}>{v.desc}</p>
+              </div>
+            </motion.div>
+          ))}
         </div>
+      </Section>
 
-        {/* Timeline */}
-        <div>
-          <motion.h3 initial={{ opacity: 0, y: 16 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="text-2xl font-bold font-heading text-center mb-10" style={{ color: '#0F172A' }}>
-            Company Timeline
-          </motion.h3>
-          <div className="relative">
-            <div className="absolute left-1/2 top-0 bottom-0 w-px hidden md:block" style={{ background: 'linear-gradient(to bottom, #C7D2FE, #D9DCFF, transparent)' }} />
-            <div className="space-y-5">
-              {timeline.map((item, i) => (
-                <motion.div
-                  key={item.year}
-                  initial={{ opacity: 0, x: i % 2 === 0 ? -28 : 28 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.55, delay: i * 0.08 }}
-                  className={`flex gap-6 items-center ${i % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
-                >
-                  <div className="flex-1">
-                    <div className={`inline-block bg-white rounded-2xl p-5 ${i % 2 === 0 ? 'md:ml-auto md:mr-6' : 'md:mr-auto md:ml-6'}`} style={{ border: '1px solid #E2E8F0', boxShadow: '0 1px 3px rgba(0,0,0,0.04), 0 4px 24px rgba(0,0,0,0.05)' }}>
-                      <span className="text-xs font-bold font-heading" style={{ color: '#4B6EF5' }}>{item.year}</span>
-                      <h4 className="font-heading font-bold mt-1 mb-1.5" style={{ color: '#0F172A' }}>{item.title}</h4>
-                      <p className="text-sm leading-relaxed" style={{ color: '#475569' }}>{item.desc}</p>
-                    </div>
-                  </div>
-                  <div className="hidden md:flex w-9 h-9 flex-shrink-0 rounded-full items-center justify-center z-10 text-white text-xs font-bold font-heading" style={{ background: 'linear-gradient(135deg, #4B6EF5, #8B3FF5)', boxShadow: '0 4px 14px rgba(75,110,245,0.38)' }}>
-                    {item.year.slice(2)}
-                  </div>
-                  <div className="flex-1 hidden md:block" />
-                </motion.div>
-              ))}
-            </div>
-          </div>
+      {/* Timeline */}
+      <Section bg="#fff">
+        <SectionHeader eyebrow="Our Journey" title="How we" titleGrad="got here" />
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }} className="timeline-grid">
+          {timeline.map((t, i) => (
+            <motion.div
+              key={t.year}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45, delay: i * 0.08 }}
+              style={{ display: 'flex', gap: 16, background: '#fff', borderRadius: 14, border: `1px solid ${C.border}`, boxShadow: S.card, padding: '18px 20px' }}
+            >
+              <div style={{ flexShrink: 0, width: 52, height: 52, borderRadius: 13, background: G.brand, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <span style={{ fontFamily: F.head, fontWeight: 800, fontSize: 13, color: '#fff' }}>{t.year.slice(2)}'</span>
+              </div>
+              <div style={{ paddingTop: 2 }}>
+                <p style={{ fontSize: 11, fontWeight: 600, fontFamily: F.head, color: C.blue500, marginBottom: 2 }}>{t.year}</p>
+                <p style={{ fontFamily: F.head, fontWeight: 700, fontSize: 14, color: C.ink, marginBottom: 4 }}>{t.title}</p>
+                <p style={{ fontSize: 13, lineHeight: 1.65, color: C.body }}>{t.desc}</p>
+              </div>
+            </motion.div>
+          ))}
         </div>
-      </div>
-    </section>
+        <style>{`.timeline-grid { grid-template-columns: 1fr 1fr; } @media(max-width:680px){ .timeline-grid { grid-template-columns: 1fr; } }`}</style>
+      </Section>
+    </>
   )
 }

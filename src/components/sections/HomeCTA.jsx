@@ -1,49 +1,44 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { HiArrowRight } from 'react-icons/hi'
+import { C, G, S, F, maxW, gutter } from '../../styles/tokens'
 
 export default function HomeCTA() {
   return (
-    <section className="py-24 lg:py-32" style={{ background: '#F8FAFC' }}>
-      <div className="max-w-4xl mx-auto px-5 sm:px-8 text-center">
+    <section style={{ background: '#fff', padding: '0 0 clamp(72px,9vw,104px)' }}>
+      <div style={{ maxWidth: maxW, margin: '0 auto', padding: `0 ${gutter}` }}>
         <motion.div
           initial={{ opacity: 0, y: 28 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="relative rounded-3xl overflow-hidden p-12 lg:p-16"
-          style={{ background: 'linear-gradient(135deg, #4B6EF5 0%, #8B3FF5 100%)' }}
+          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+          style={{ background: '#06081A', borderRadius: 24, overflow: 'hidden', position: 'relative', padding: 'clamp(40px,6vw,72px)' }}
         >
-          {/* Grid overlay */}
-          <div className="absolute inset-0 bg-grid opacity-15" />
-          {/* Blobs */}
-          <div className="absolute -top-10 -right-10 w-48 h-48 rounded-full blur-3xl opacity-25" style={{ background: '#ffffff' }} />
-          <div className="absolute -bottom-10 -left-10 w-56 h-56 rounded-full blur-3xl opacity-15" style={{ background: '#ffffff' }} />
+          {/* Bg grid */}
+          <div className="bg-grid" style={{ position: 'absolute', inset: 0, opacity: 0.09 }} />
+          {/* Glow */}
+          <div style={{ position: 'absolute', top: -60, right: -60, width: 300, height: 300, borderRadius: '50%', background: C.blue500, filter: 'blur(100px)', opacity: 0.28 }} />
+          <div style={{ position: 'absolute', bottom: -40, left: -40, width: 220, height: 220, borderRadius: '50%', background: C.violet500, filter: 'blur(80px)', opacity: 0.2 }} />
 
-          <div className="relative">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-white mb-5 tracking-tight">
-              Ready to build something remarkable?
-            </h2>
-            <p className="text-lg mb-9 max-w-xl mx-auto" style={{ color: 'rgba(255,255,255,0.75)' }}>
-              Let's turn your vision into a high-performance digital product. We're ready when you are.
+          <div style={{ position: 'relative', maxWidth: 600 }}>
+            <p style={{ fontSize: 11, fontWeight: 700, fontFamily: F.head, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', marginBottom: 16 }}>
+              Let's work together
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center gap-2 px-7 py-4 rounded-2xl font-semibold text-base transition-all"
-                  style={{ background: '#ffffff', color: '#4B6EF5', boxShadow: '0 4px 20px rgba(0,0,0,0.15)' }}
-                >
-                  Start Your Project <HiArrowRight size={18} />
+            <h2 style={{ fontFamily: F.head, fontWeight: 800, fontSize: 'clamp(1.9rem,3.8vw,3rem)', letterSpacing: '-0.04em', lineHeight: 1.1, color: '#fff', marginBottom: 18 }}>
+              Have a project in mind?
+            </h2>
+            <p style={{ fontSize: 17, lineHeight: 1.75, color: 'rgba(255,255,255,0.5)', marginBottom: 36, maxWidth: 480 }}>
+              Tell us what you're building. We'll respond within one business day with a clear proposal — scope, timeline, and cost.
+            </p>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 12 }}>
+              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}>
+                <Link to="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '13px 26px', borderRadius: 12, fontSize: 15, fontWeight: 700, fontFamily: F.head, color: C.blue500, background: '#fff', boxShadow: '0 4px 16px rgba(0,0,0,0.18)' }}>
+                  Start a Conversation <HiArrowRight size={15} />
                 </Link>
               </motion.div>
-              <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-                <Link
-                  to="/projects"
-                  className="inline-flex items-center gap-2 px-7 py-4 rounded-2xl font-semibold text-base text-white transition-all"
-                  style={{ border: '2px solid rgba(255,255,255,0.35)' }}
-                >
-                  View Our Work
+              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}>
+                <Link to="/services" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '12px 26px', borderRadius: 12, fontSize: 15, fontWeight: 700, fontFamily: F.head, color: 'rgba(255,255,255,0.75)', background: 'rgba(255,255,255,0.06)', border: '1.5px solid rgba(255,255,255,0.12)' }}>
+                  Explore Services
                 </Link>
               </motion.div>
             </div>

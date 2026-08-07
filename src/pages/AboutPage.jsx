@@ -8,9 +8,10 @@ export default function AboutPage() {
   return (
     <PageWrapper>
       <PageHero
-        badge="Our Story"
-        title="Engineered with purpose"
-        subtitle="AnoByte Technologies was founded on a single belief — businesses deserve software that actually works, elegantly, reliably, and at scale."
+        eyebrow="About"
+        title="Who we"
+        titleGrad="are"
+        subtitle="A focused engineering studio that builds software properly — clean code, clear communication, honest timelines."
       />
       <About />
       <WhyChooseUs />

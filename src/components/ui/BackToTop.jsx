@@ -1,30 +1,31 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { HiChevronUp } from 'react-icons/hi'
+import { C, G, S } from '../../styles/tokens'
 
 export default function BackToTop() {
-  const [visible, setVisible] = useState(false)
+  const [show, setShow] = useState(false)
   useEffect(() => {
-    const fn = () => setVisible(window.scrollY > 600)
-    window.addEventListener('scroll', fn)
+    const fn = () => setShow(window.scrollY > 500)
+    window.addEventListener('scroll', fn, { passive: true })
     return () => window.removeEventListener('scroll', fn)
   }, [])
 
   return (
     <AnimatePresence>
-      {visible && (
+      {show && (
         <motion.button
-          initial={{ opacity: 0, scale: 0.8, y: 10 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          exit={{ opacity: 0, scale: 0.8, y: 10 }}
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
+          initial={{ opacity: 0, scale: 0.75 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.75 }}
+          whileHover={{ scale: 1.08 }}
+          whileTap={{ scale: 0.93 }}
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           aria-label="Back to top"
-          className="fixed bottom-8 right-8 z-50 w-12 h-12 rounded-xl flex items-center justify-center text-white transition-all"
-          style={{ background: 'linear-gradient(135deg, #4B6EF5, #8B3FF5)', boxShadow: '0 4px 14px rgba(75,110,245,0.4)' }}
+          style={{ position: 'fixed', bottom: 28, right: 28, zIndex: 50, width: 44, height: 44, borderRadius: 12, background: G.brand, boxShadow: S.btn, display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', border: 'none' }}
         >
-          <HiChevronUp size={20} />
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <polyline points="18 15 12 9 6 15" />
+          </svg>
         </motion.button>
       )}
     </AnimatePresence>

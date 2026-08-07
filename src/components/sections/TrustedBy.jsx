@@ -1,53 +1,55 @@
 import { motion } from 'framer-motion'
+import { C, F, maxW, px } from '../../styles/tokens'
 
-const companies = [
-  { name: 'TechCorp',   abbr: 'TC' },
-  { name: 'Nexus',      abbr: 'NX' },
-  { name: 'Meridian',   abbr: 'MD' },
-  { name: 'Vertex AI',  abbr: 'VA' },
-  { name: 'CloudBase',  abbr: 'CB' },
-  { name: 'Orion Labs', abbr: 'OL' },
-  { name: 'Pulsar',     abbr: 'PS' },
-  { name: 'Synapse',    abbr: 'SY' },
-  { name: 'Quantum',    abbr: 'QT' },
-  { name: 'ArcNode',    abbr: 'AN' },
-]
+const companies = ['TechCorp','Nexus','Meridian','Vertex AI','CloudBase','Orion Labs','Pulsar','Synapse','Quantum','ArcNode']
+const doubled   = [...companies, ...companies]
 
-function LogoChip({ c }) {
+function Chip({ name }) {
   return (
-    <div
-      className="flex-shrink-0 flex items-center gap-2.5 px-5 py-3 rounded-xl mx-2 transition-all duration-300 group"
-      style={{ border: '1px solid #E2E8F0', background: '#ffffff' }}
-    >
-      <div
-        className="w-7 h-7 rounded-lg flex items-center justify-center transition-all duration-300"
-        style={{ background: '#EEF0FF' }}
-      >
-        <span className="text-xs font-bold font-heading" style={{ color: '#4B6EF5' }}>{c.abbr}</span>
+    <div style={{
+      flexShrink: 0,
+      display: 'flex', alignItems: 'center', gap: 10,
+      padding: '10px 20px', borderRadius: 12, margin: '0 6px',
+      background: '#fff', border: `1px solid ${C.border}`,
+      boxShadow: '0 2px 8px rgba(0,0,0,0.04)',
+    }}>
+      <div style={{
+        width: 30, height: 30, borderRadius: 8,
+        background: 'linear-gradient(135deg,#4B6EF5,#8B3FF5)',
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        color: '#fff', fontSize: 11, fontWeight: 800, fontFamily: F.head, flexShrink: 0,
+      }}>
+        {name.charAt(0)}
       </div>
-      <span className="text-sm font-semibold whitespace-nowrap" style={{ color: '#CBD5E1' }}>{c.name}</span>
+      <span style={{ fontSize: 13, fontWeight: 600, fontFamily: F.head, color: C.subtle, whiteSpace: 'nowrap' }}>
+        {name}
+      </span>
     </div>
   )
 }
 
 export default function TrustedBy() {
-  const doubled = [...companies, ...companies]
   return (
-    <section className="py-14 border-y" style={{ background: '#ffffff', borderColor: '#F1F5F9' }}>
-      <div className="max-w-7xl mx-auto px-5 sm:px-8 mb-7">
+    <section style={{ background: '#fff', borderTop: `1px solid ${C.border}`, borderBottom: `1px solid ${C.border}`, padding: '52px 0' }}>
+      <div style={{ maxWidth: maxW, margin: '0 auto', padding: `0 ${px}`, marginBottom: 24 }}>
         <motion.p
           initial={{ opacity: 0, y: 8 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center text-xs font-semibold tracking-widest uppercase"
-          style={{ color: '#CBD5E1' }}
+          style={{ textAlign: 'center', fontSize: 11, fontWeight: 600, fontFamily: F.head, color: C.subtle, letterSpacing: '0.18em', textTransform: 'uppercase' }}
         >
           Trusted by forward-thinking companies
         </motion.p>
       </div>
-      <div className="ticker-wrap">
-        <div className="ticker-inner">
-          {doubled.map((c, i) => <LogoChip key={i} c={c} />)}
+      <div
+        className="ticker-wrap"
+        style={{
+          maskImage: 'linear-gradient(90deg, transparent 0%, black 10%, black 90%, transparent 100%)',
+          WebkitMaskImage: 'linear-gradient(90deg, transparent 0%, black 10%, black 90%, transparent 100%)',
+        }}
+      >
+        <div className="ticker-track">
+          {doubled.map((n, i) => <Chip key={i} name={n} />)}
         </div>
       </div>
     </section>

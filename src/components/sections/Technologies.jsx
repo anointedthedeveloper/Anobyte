@@ -1,62 +1,70 @@
 import { motion } from 'framer-motion'
-import SectionBadge from '../ui/SectionBadge'
+import { C, S, F } from '../../styles/tokens'
+import { Section, SectionHeader } from '../ui/Wrap'
 
 const stack = [
-  { name: 'React',       color: '#61DAFB', cat: 'Frontend' },
-  { name: 'Next.js',     color: '#0F172A', cat: 'Frontend' },
-  { name: 'TypeScript',  color: '#3178C6', cat: 'Language' },
-  { name: 'TailwindCSS', color: '#06B6D4', cat: 'Styling' },
-  { name: 'Node.js',     color: '#339933', cat: 'Backend' },
-  { name: 'Python',      color: '#3776AB', cat: 'Backend' },
-  { name: 'Express',     color: '#4B6EF5', cat: 'Backend' },
-  { name: '.NET / C#',   color: '#512BD4', cat: 'Backend' },
-  { name: 'PostgreSQL',  color: '#4169E1', cat: 'Database' },
-  { name: 'MongoDB',     color: '#47A248', cat: 'Database' },
-  { name: 'MySQL',       color: '#4479A1', cat: 'Database' },
-  { name: 'Firebase',    color: '#FFCA28', cat: 'Platform' },
-  { name: 'Supabase',    color: '#3ECF8E', cat: 'Platform' },
-  { name: 'Docker',      color: '#2496ED', cat: 'DevOps' },
-  { name: 'Linux',       color: '#FCC624', cat: 'DevOps' },
-  { name: 'GitHub',      color: '#181717', cat: 'DevOps' },
+  { name: 'React',       color: '#61DAFB', dark: '#0a3d52',  cat: 'Frontend' },
+  { name: 'Next.js',     color: '#E8EAED', dark: '#111111',  cat: 'Frontend' },
+  { name: 'TypeScript',  color: '#3178C6', dark: '#143d73',  cat: 'Language' },
+  { name: 'Tailwind',    color: '#38BDF8', dark: '#0c4a5c',  cat: 'Styling'  },
+  { name: 'Node.js',     color: '#68A063', dark: '#1a3d1a',  cat: 'Backend'  },
+  { name: 'Python',      color: '#4B8BBE', dark: '#1a3050',  cat: 'Backend'  },
+  { name: 'Express',     color: '#CCCCCC', dark: '#1a1a1a',  cat: 'Backend'  },
+  { name: '.NET',        color: '#512BD4', dark: '#1e0a6e',  cat: 'Backend'  },
+  { name: 'PostgreSQL',  color: '#4169E1', dark: '#0f1e6e',  cat: 'Database' },
+  { name: 'MongoDB',     color: '#47A248', dark: '#0e3010',  cat: 'Database' },
+  { name: 'MySQL',       color: '#4479A1', dark: '#0f2040',  cat: 'Database' },
+  { name: 'Firebase',    color: '#FFCA28', dark: '#3d2e00',  cat: 'Platform' },
+  { name: 'Supabase',    color: '#3ECF8E', dark: '#0a3520',  cat: 'Platform' },
+  { name: 'Docker',      color: '#2496ED', dark: '#082d6e',  cat: 'DevOps'   },
+  { name: 'GitHub',      color: '#E8EAED', dark: '#0d1117',  cat: 'DevOps'   },
+  { name: 'AWS',         color: '#FF9900', dark: '#3d1f00',  cat: 'Cloud'    },
 ]
+
+const catColor = { Frontend: C.blue500, Language: C.violet500, Styling: '#0EA5E9', Backend: '#009955', Database: '#D97706', Platform: '#EC4899', DevOps: '#475569', Cloud: '#FF9900' }
 
 export default function Technologies() {
   return (
-    <section className="py-24 lg:py-32" style={{ background: '#F8FAFC' }}>
-      <div className="max-w-7xl mx-auto px-5 sm:px-8">
-        <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.55 }} className="text-center max-w-2xl mx-auto mb-12">
-          <div className="flex justify-center mb-5"><SectionBadge color="blue">Our Stack</SectionBadge></div>
-          <h2 className="text-4xl lg:text-5xl font-bold font-heading tracking-tight mb-5" style={{ color: '#0F172A' }}>
-            Built with the <span className="text-gradient">best tools</span>
-          </h2>
-          <p className="text-lg leading-relaxed" style={{ color: '#475569' }}>
-            Modern, battle-tested technologies chosen for performance, scalability, and developer experience.
-          </p>
-        </motion.div>
+    <Section bg="#fff">
+      <SectionHeader
+        eyebrow="Tech Stack"
+        title="Tools we"
+        titleGrad="work with"
+        subtitle="Modern, production-proven technologies chosen for performance and maintainability."
+      />
 
-        <div className="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-8 gap-4">
-          {stack.map((t, i) => (
-            <motion.div
-              key={t.name}
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.38, delay: i * 0.04 }}
-              whileHover={{ y: -4, scale: 1.06 }}
-              className="bg-white rounded-2xl p-4 flex flex-col items-center gap-2 group cursor-default transition-all duration-300"
-              style={{ border: '1px solid #E2E8F0', boxShadow: '0 1px 3px rgba(0,0,0,0.04), 0 4px 24px rgba(0,0,0,0.05)' }}
-              onMouseEnter={(e) => (e.currentTarget.style.boxShadow = '0 8px 30px rgba(75,110,245,0.12)')}
-              onMouseLeave={(e) => (e.currentTarget.style.boxShadow = '0 1px 3px rgba(0,0,0,0.04), 0 4px 24px rgba(0,0,0,0.05)')}
-            >
-              <div className="w-9 h-9 rounded-xl flex items-center justify-center text-white font-bold text-xs shadow-sm" style={{ background: t.color }}>
-                {t.name.charAt(0)}
-              </div>
-              <p className="text-xs font-semibold text-center font-heading leading-tight" style={{ color: '#0F172A' }}>{t.name}</p>
-              <p className="text-xs text-center" style={{ color: '#CBD5E1' }}>{t.cat}</p>
-            </motion.div>
-          ))}
-        </div>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(110px, 1fr))', gap: 12 }}>
+        {stack.map((t, i) => (
+          <motion.div
+            key={t.name}
+            initial={{ opacity: 0, scale: 0.85 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.35, delay: i * 0.03 }}
+            style={{
+              background: '#fff',
+              border: `1px solid ${C.border}`,
+              borderRadius: 14,
+              padding: '16px 12px 14px',
+              display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 8,
+              boxShadow: S.card,
+              transition: 'box-shadow 0.2s, transform 0.2s, border-color 0.2s',
+              cursor: 'default',
+            }}
+            onMouseEnter={e => { e.currentTarget.style.boxShadow = S.cardH; e.currentTarget.style.transform = 'translateY(-3px)'; e.currentTarget.style.borderColor = C.blue200 }}
+            onMouseLeave={e => { e.currentTarget.style.boxShadow = S.card; e.currentTarget.style.transform = 'none'; e.currentTarget.style.borderColor = C.border }}
+          >
+            {/* Icon circle */}
+            <div style={{ width: 36, height: 36, borderRadius: 10, background: t.dark, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              <span style={{ fontSize: 10, fontWeight: 900, fontFamily: F.head, color: t.color, letterSpacing: '-0.02em' }}>{t.name.slice(0, 2).toUpperCase()}</span>
+            </div>
+            <p style={{ fontSize: 12, fontWeight: 700, fontFamily: F.head, color: C.ink, textAlign: 'center', lineHeight: 1.2 }}>{t.name}</p>
+            <span style={{ fontSize: 10, fontWeight: 600, fontFamily: F.head, padding: '2px 8px', borderRadius: 100, background: `${catColor[t.cat]}14`, color: catColor[t.cat] }}>
+              {t.cat}
+            </span>
+          </motion.div>
+        ))}
       </div>
-    </section>
+    </Section>
   )
 }

@@ -1,74 +1,92 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { HiArrowRight, HiMail } from 'react-icons/hi'
-import { FaGithub, FaLinkedinIn, FaTwitter, FaInstagram } from 'react-icons/fa'
+import { HiArrowRight } from 'react-icons/hi'
+import { HiEnvelope } from 'react-icons/hi2'
+import { C, G, S, F, maxW, gutter } from '../styles/tokens'
 
-const links = {
-  Company:   [{ l:'About',    to:'/about'    },{ l:'Process', to:'/process' },{ l:'Careers', to:'#' },{ l:'Blog',    to:'#' }],
-  Services:  [{ l:'Custom Software', to:'/services' },{ l:'Web Development', to:'/services' },{ l:'Mobile Apps', to:'/services' },{ l:'UI/UX Design', to:'/services' },{ l:'Cloud Solutions', to:'/services' }],
-  Resources: [{ l:'Projects',  to:'/projects' },{ l:'Process',  to:'/process' },{ l:'FAQ',      to:'/process'  },{ l:'Contact',  to:'/contact'  }],
-  Legal:     [{ l:'Privacy Policy', to:'#' },{ l:'Terms of Service', to:'#' },{ l:'Cookie Policy', to:'#' }],
+const cols = {
+  Company:   [{ l: 'About',           to: '/about'    }, { l: 'Process',        to: '/process'  }, { l: 'Contact',        to: '/contact'  }],
+  Services:  [{ l: 'Web & Mobile',    to: '/services' }, { l: 'Cloud & DevOps', to: '/services' }, { l: 'Design',         to: '/services' }, { l: 'Automation',     to: '/services' }],
+  Resources: [{ l: 'Projects',        to: '/projects' }, { l: 'FAQ',            to: '/process'  }],
+  Legal:     [{ l: 'Privacy Policy',  to: '#'         }, { l: 'Terms',          to: '#'         }],
 }
 
-const socials = [
-  { icon: FaGithub,     href: '#', label: 'GitHub' },
-  { icon: FaLinkedinIn, href: '#', label: 'LinkedIn' },
-  { icon: FaTwitter,    href: '#', label: 'Twitter' },
-  { icon: FaInstagram,  href: '#', label: 'Instagram' },
-]
-
 export default function Footer() {
-  const [email, setEmail] = useState('')
+  const [email, setEmail]   = useState('')
   const [subbed, setSubbed] = useState(false)
 
   return (
-    <footer style={{ background: '#0A0E1A', color: '#ffffff' }}>
-      {/* CTA band */}
-      <div className="border-b" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
-        <div className="max-w-7xl mx-auto px-5 sm:px-8 py-12">
-          <div className="flex flex-col md:flex-row items-center justify-between gap-7">
-            <div>
-              <h3 className="font-heading font-bold text-2xl lg:text-3xl mb-1.5 text-white">Ready to build something great?</h3>
-              <p className="text-sm" style={{ color: 'rgba(255,255,255,0.48)' }}>Let's turn your vision into a high-performance digital product.</p>
-            </div>
-            <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-              <Link
-                to="/contact"
-                className="flex-shrink-0 inline-flex items-center gap-2 px-6 py-3.5 font-semibold rounded-xl text-sm text-white transition-all"
-                style={{ background: 'linear-gradient(135deg, #4B6EF5, #8B3FF5)', boxShadow: '0 4px 14px rgba(75,110,245,0.38)' }}
-              >
-                Start Your Project <HiArrowRight size={16} />
-              </Link>
-            </motion.div>
+    <footer style={{ background: '#06081A', color: '#fff' }}>
+
+      {/* ── CTA row ── */}
+      <div style={{ borderBottom: '1px solid rgba(255,255,255,0.07)' }}>
+        <div style={{ maxWidth: maxW, margin: '0 auto', padding: `40px ${gutter}`, display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 20 }}>
+          <div>
+            <h3 style={{ fontFamily: F.head, fontWeight: 800, fontSize: 'clamp(1.3rem,2vw,1.7rem)', color: '#fff', marginBottom: 6, letterSpacing: '-0.025em' }}>
+              Have a project in mind?
+            </h3>
+            <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.4)' }}>Let's talk about what you're building.</p>
           </div>
+          <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}>
+            <Link
+              to="/contact"
+              style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '11px 22px', borderRadius: 11, fontSize: 14, fontWeight: 700, fontFamily: F.head, color: '#fff', background: G.brand, boxShadow: S.btn, whiteSpace: 'nowrap' }}
+            >
+              Get in Touch <HiArrowRight size={14} />
+            </Link>
+          </motion.div>
         </div>
       </div>
 
-      {/* Main */}
-      <div className="max-w-7xl mx-auto px-5 sm:px-8 py-14">
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-10 pb-12 border-b" style={{ borderColor: 'rgba(255,255,255,0.07)' }}>
+      {/* ── Main columns ── */}
+      <div style={{ maxWidth: maxW, margin: '0 auto', padding: `52px ${gutter} 36px` }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr 1fr 1fr', gap: 32 }} className="footer-grid">
+
           {/* Brand */}
-          <div className="col-span-2 md:col-span-3 lg:col-span-2">
-            <Link to="/" className="inline-flex items-center mb-5">
-              <img src="/logo.png" alt="AnoByte Technologies" className="h-9 w-auto" />
+          <div>
+            <Link to="/" style={{ display: 'inline-flex', alignItems: 'center', gap: 10, marginBottom: 16, textDecoration: 'none' }}>
+              <img src="/favicon.png" alt="AnoByte Technologies" style={{ height: 38, width: 'auto', objectFit: 'contain', flexShrink: 0 }} />
+              <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1.25 }}>
+                <span style={{
+                  fontFamily: F.head, fontWeight: 800, fontSize: 16,
+                  background: G.brand,
+                  WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text',
+                  letterSpacing: '-0.02em',
+                }}>
+                  Anobyte Technologies
+                </span>
+                <span style={{
+                  fontFamily: F.body, fontWeight: 400, fontSize: 10,
+                  color: 'rgba(255,255,255,0.32)', letterSpacing: '0.01em',
+                }}>
+                  Precision in Every Byte
+                </span>
+              </div>
             </Link>
-            <p className="text-sm leading-relaxed mb-6 max-w-xs" style={{ color: 'rgba(255,255,255,0.42)' }}>
-              Engineering tomorrow's digital solutions. Precision in every byte.
+            <p style={{ fontSize: 13, lineHeight: 1.75, color: 'rgba(255,255,255,0.38)', marginBottom: 24, maxWidth: 240 }}>
+              Engineering-led product studio. We design and build software that works.
             </p>
+
             {/* Newsletter */}
             {subbed ? (
-              <p className="text-sm font-medium" style={{ color: '#10B981' }}>✓ Subscribed — thank you!</p>
+              <p style={{ fontSize: 13, fontWeight: 600, fontFamily: F.head, color: C.green }}>✓ Subscribed</p>
             ) : (
-              <form onSubmit={(e) => { e.preventDefault(); if (email) setSubbed(true) }} className="flex gap-2">
-                <div className="flex-1 relative">
-                  <HiMail className="absolute left-3 top-1/2 -translate-y-1/2" style={{ color: 'rgba(255,255,255,0.25)' }} size={14} />
-                  <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Your email"
-                    className="w-full pl-9 pr-3 py-2.5 rounded-xl text-sm text-white placeholder-white/25 outline-none transition-all"
-                    style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)' }} />
+              <form
+                onSubmit={e => { e.preventDefault(); if (email) setSubbed(true) }}
+                style={{ display: 'flex', gap: 8 }}
+              >
+                <div style={{ flex: 1, position: 'relative' }}>
+                  <HiEnvelope style={{ position: 'absolute', left: 11, top: '50%', transform: 'translateY(-50%)', color: 'rgba(255,255,255,0.2)' }} size={14} />
+                  <input
+                    type="email" value={email} onChange={e => setEmail(e.target.value)}
+                    placeholder="Email address"
+                    style={{ width: '100%', paddingLeft: 32, paddingRight: 10, paddingTop: 9, paddingBottom: 9, borderRadius: 9, fontSize: 13, color: '#fff', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)', outline: 'none', fontFamily: F.body }}
+                    onFocus={e => { e.target.style.borderColor = 'rgba(75,110,245,0.5)' }}
+                    onBlur={e => { e.target.style.borderColor = 'rgba(255,255,255,0.1)' }}
+                  />
                 </div>
-                <button type="submit" className="px-4 py-2.5 rounded-xl text-white text-sm font-semibold flex-shrink-0"
-                  style={{ background: 'linear-gradient(135deg,#4B6EF5,#8B3FF5)' }}>
+                <button type="submit" style={{ padding: '9px 14px', borderRadius: 9, fontSize: 13, fontWeight: 700, fontFamily: F.head, color: '#fff', background: G.brand, cursor: 'pointer', whiteSpace: 'nowrap' }}>
                   Join
                 </button>
               </form>
@@ -76,15 +94,20 @@ export default function Footer() {
           </div>
 
           {/* Link columns */}
-          {Object.entries(links).map(([cat, items]) => (
+          {Object.entries(cols).map(([cat, items]) => (
             <div key={cat}>
-              <h4 className="font-heading font-semibold text-xs uppercase tracking-widest mb-4" style={{ color: 'rgba(255,255,255,0.5)' }}>{cat}</h4>
-              <ul className="space-y-2.5">
+              <p style={{ fontSize: 11, fontWeight: 700, fontFamily: F.head, letterSpacing: '0.12em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.28)', marginBottom: 16 }}>
+                {cat}
+              </p>
+              <ul style={{ listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 10 }}>
                 {items.map(({ l, to }) => (
                   <li key={l}>
-                    <Link to={to} className="text-sm transition-colors duration-200" style={{ color: 'rgba(255,255,255,0.36)' }}
-                      onMouseEnter={(e) => (e.target.style.color = '#ffffff')}
-                      onMouseLeave={(e) => (e.target.style.color = 'rgba(255,255,255,0.36)')}>
+                    <Link
+                      to={to}
+                      style={{ fontSize: 13, color: 'rgba(255,255,255,0.38)', transition: 'color 0.18s' }}
+                      onMouseEnter={e => { e.target.style.color = '#fff' }}
+                      onMouseLeave={e => { e.target.style.color = 'rgba(255,255,255,0.38)' }}
+                    >
                       {l}
                     </Link>
                   </li>
@@ -94,25 +117,22 @@ export default function Footer() {
           ))}
         </div>
 
-        {/* Bottom */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-7">
-          <p className="text-xs" style={{ color: 'rgba(255,255,255,0.25)' }}>
+        {/* Bottom bar */}
+        <div style={{ marginTop: 48, paddingTop: 20, borderTop: '1px solid rgba(255,255,255,0.07)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12 }}>
+          <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.22)' }}>
             © {new Date().getFullYear()} AnoByte Technologies. All rights reserved.
           </p>
-          <div className="flex gap-2">
-            {socials.map((s) => (
-              <motion.a key={s.label} href={s.href} whileHover={{ scale: 1.1, y: -2 }} aria-label={s.label}
-                className="w-8 h-8 rounded-lg flex items-center justify-center transition-all"
-                style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)', color: 'rgba(255,255,255,0.35)' }}
-                onMouseEnter={(e) => { e.currentTarget.style.color = '#fff'; e.currentTarget.style.background = 'rgba(75,110,245,0.3)' }}
-                onMouseLeave={(e) => { e.currentTarget.style.color = 'rgba(255,255,255,0.35)'; e.currentTarget.style.background = 'rgba(255,255,255,0.05)' }}>
-                <s.icon size={13} />
-              </motion.a>
-            ))}
-          </div>
-          <p className="text-xs" style={{ color: 'rgba(255,255,255,0.18)' }}>Precision in Every Byte ✦</p>
+          <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.18)', fontFamily: F.head }}>
+            Precision in Every Byte
+          </p>
         </div>
       </div>
+
+      <style>{`
+        .footer-grid { grid-template-columns: 2fr 1fr 1fr 1fr 1fr; }
+        @media (max-width: 860px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 500px) { .footer-grid { grid-template-columns: 1fr; } }
+      `}</style>
     </footer>
   )
 }

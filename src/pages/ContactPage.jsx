@@ -6,9 +6,10 @@ export default function ContactPage() {
   return (
     <PageWrapper>
       <PageHero
-        badge="Get In Touch"
-        title="Let's build something great together"
-        subtitle="Tell us about your project and we'll respond within 24 hours with a tailored proposal."
+        eyebrow="Contact"
+        title="Start a"
+        titleGrad="conversation"
+        subtitle="Tell us what you're building. We'll respond within one business day."
       />
       <Contact />
     </PageWrapper>

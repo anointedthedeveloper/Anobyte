@@ -8,9 +8,10 @@ export default function ProcessPage() {
   return (
     <PageWrapper>
       <PageHero
-        badge="How We Work"
-        title="A process built for excellence"
-        subtitle="Six refined phases that take your idea from a napkin sketch to a production-grade digital product — with full transparency at every step."
+        eyebrow="How We Work"
+        title="Our"
+        titleGrad="process"
+        subtitle="Six clear phases from brief to deployment. No guesswork, no surprises."
       />
       <Process />
       <FAQ />

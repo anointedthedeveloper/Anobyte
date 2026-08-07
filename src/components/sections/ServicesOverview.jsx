@@ -1,76 +1,69 @@
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { HiCode, HiDesktopComputer, HiDeviceMobile, HiColorSwatch, HiCloud, HiLink, HiArrowRight } from 'react-icons/hi'
-import SectionBadge from '../ui/SectionBadge'
+import { HiArrowRight } from 'react-icons/hi'
+import { HiCodeBracket, HiDevicePhoneMobile, HiPaintBrush, HiCloud, HiCircleStack, HiCog6Tooth } from 'react-icons/hi2'
+import { C, G, S, F } from '../../styles/tokens'
+import { Section, SectionHeader } from '../ui/Wrap'
 
-const featured = [
-  { icon: HiCode,           title: 'Custom Software',   desc: 'Bespoke solutions engineered for your exact business needs and built to scale.',       bg: '#EEF0FF', ic: '#4B6EF5' },
-  { icon: HiDesktopComputer,title: 'Web Development',   desc: 'High-performance, SEO-ready web apps using the most modern frameworks available.',       bg: '#F3EAFF', ic: '#8B3FF5' },
-  { icon: HiDeviceMobile,   title: 'Mobile Apps',       desc: 'Native and cross-platform apps for iOS and Android that users genuinely love.',           bg: '#FDF2F8', ic: '#EC4899' },
-  { icon: HiColorSwatch,    title: 'UI/UX Design',      desc: 'Intuitive, pixel-perfect interfaces grounded in real user research.',                     bg: '#FFFBEB', ic: '#D97706' },
-  { icon: HiCloud,          title: 'Cloud Solutions',   desc: 'Scalable AWS, GCP, and Azure infrastructure from migration to full cloud-native.',         bg: '#ECFDF5', ic: '#059669' },
-  { icon: HiLink,           title: 'API Development',   desc: 'Robust REST and GraphQL APIs that integrate seamlessly into any ecosystem.',               bg: '#EFF6FF', ic: '#2563EB' },
+const services = [
+  { Icon: HiCodeBracket,       title: 'Custom Software',   desc: 'End-to-end software built precisely around your business logic and engineered to scale.',        accent: C.blue500,   bg: C.blue50 },
+  { Icon: HiDevicePhoneMobile, title: 'Web & Mobile Apps', desc: 'Performant, SEO-ready web apps and cross-platform mobile apps users actually enjoy.',             accent: C.violet500, bg: C.violetLight },
+  { Icon: HiPaintBrush,        title: 'UI/UX Design',      desc: 'Research-backed interfaces that convert. Clean, purposeful, and delightful to use.',              accent: '#EC4899',   bg: '#FDF2F8' },
+  { Icon: HiCloud,             title: 'Cloud & DevOps',    desc: 'AWS, GCP and Azure infrastructure. CI/CD pipelines. Zero-downtime deployments.',                  accent: '#009955',   bg: '#EDFFF7' },
+  { Icon: HiCircleStack,       title: 'API & Backend',     desc: 'Robust REST and GraphQL APIs. Database design. Microservices. Built to handle real traffic.',      accent: '#D97706',   bg: '#FFFBEB' },
+  { Icon: HiCog6Tooth,         title: 'Automation',        desc: 'Workflow automation that cuts manual work, reduces cost, and lets your team focus on what matters.',accent: '#0284C7',   bg: '#EFF9FF' },
 ]
 
 export default function ServicesOverview() {
   return (
-    <section className="py-24 lg:py-32" style={{ background: '#F8FAFC' }}>
-      <div className="max-w-7xl mx-auto px-5 sm:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.55 }}
-          className="text-center max-w-2xl mx-auto mb-14"
-        >
-          <div className="flex justify-center mb-5"><SectionBadge>What We Build</SectionBadge></div>
-          <h2 className="text-4xl lg:text-5xl font-bold font-heading tracking-tight mb-5" style={{ color: '#0F172A' }}>
-            Services that drive <span className="text-gradient">real results</span>
-          </h2>
-          <p className="text-lg leading-relaxed" style={{ color: '#475569' }}>
-            From concept to deployment — we deliver end-to-end digital solutions tailored to your business.
-          </p>
-        </motion.div>
+    <Section bg={C.bg}>
+      <SectionHeader
+        eyebrow="What We Build"
+        title="Services that solve"
+        titleGrad="real problems"
+        subtitle="We cover the full product lifecycle — from the first wireframe to production infrastructure."
+      />
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {featured.map((s, i) => (
-            <motion.div
-              key={s.title}
-              initial={{ opacity: 0, y: 28 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-40px' }}
-              transition={{ duration: 0.5, delay: i * 0.07, ease: [0.22, 1, 0.36, 1] }}
-              whileHover={{ y: -4 }}
-              className="bg-white rounded-2xl p-6 group transition-all duration-300"
-              style={{ border: '1px solid #E2E8F0', boxShadow: '0 1px 3px rgba(0,0,0,0.04), 0 4px 24px rgba(0,0,0,0.05)' }}
-              onMouseEnter={(e) => (e.currentTarget.style.boxShadow = '0 8px 40px rgba(75,110,245,0.12), 0 2px 8px rgba(0,0,0,0.06)')}
-              onMouseLeave={(e) => (e.currentTarget.style.boxShadow = '0 1px 3px rgba(0,0,0,0.04), 0 4px 24px rgba(0,0,0,0.05)')}
-            >
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300" style={{ background: s.bg }}>
-                <s.icon style={{ color: s.ic }} size={22} />
-              </div>
-              <h3 className="font-heading font-semibold text-base mb-2" style={{ color: '#0F172A' }}>{s.title}</h3>
-              <p className="text-sm leading-relaxed" style={{ color: '#475569' }}>{s.desc}</p>
-            </motion.div>
-          ))}
-        </div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="flex justify-center mt-10"
-        >
-          <Link
-            to="/services"
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-sm transition-all"
-            style={{ background: 'linear-gradient(135deg, #4B6EF5, #8B3FF5)', color: '#ffffff', boxShadow: '0 4px 14px rgba(75,110,245,0.38)' }}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 20 }}>
+        {services.map((s, i) => (
+          <motion.div
+            key={s.title}
+            initial={{ opacity: 0, y: 22 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.5, delay: i * 0.07, ease: [0.22, 1, 0.36, 1] }}
+            style={{
+              background: '#fff',
+              borderRadius: 16,
+              border: `1px solid ${C.border}`,
+              boxShadow: S.card,
+              overflow: 'hidden',
+              transition: 'box-shadow 0.25s, transform 0.25s',
+              cursor: 'default',
+            }}
+            onMouseEnter={e => { e.currentTarget.style.boxShadow = S.cardH; e.currentTarget.style.transform = 'translateY(-3px)' }}
+            onMouseLeave={e => { e.currentTarget.style.boxShadow = S.card; e.currentTarget.style.transform = 'none' }}
           >
-            View All Services <HiArrowRight size={16} />
+            {/* colour accent bar */}
+            <div style={{ height: 3, background: s.accent }} />
+            <div style={{ padding: '22px 24px 26px' }}>
+              <div style={{ width: 44, height: 44, borderRadius: 12, background: s.bg, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 16 }}>
+                <s.Icon style={{ color: s.accent }} size={20} />
+              </div>
+              <h3 style={{ fontFamily: F.head, fontWeight: 700, fontSize: 16, color: C.ink, marginBottom: 8 }}>{s.title}</h3>
+              <p style={{ fontSize: 14, lineHeight: 1.7, color: C.body }}>{s.desc}</p>
+            </div>
+          </motion.div>
+        ))}
+      </div>
+
+      <div style={{ display: 'flex', justifyContent: 'center', marginTop: 44 }}>
+        <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.97 }}>
+          <Link to="/services" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '13px 28px', borderRadius: 12, fontSize: 15, fontWeight: 700, fontFamily: F.head, color: '#fff', background: G.brand, boxShadow: S.btn }}>
+            All Services <HiArrowRight size={15} />
           </Link>
         </motion.div>
       </div>
-    </section>
+    </Section>
   )
 }
