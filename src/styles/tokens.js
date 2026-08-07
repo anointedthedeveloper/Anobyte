@@ -54,5 +54,5 @@ export const F = {
   body: '"Inter", sans-serif',
 }
 
-export const maxW  = '1180px'
-export const gutter = 'clamp(16px, 4vw, 48px)'
+export const maxW  = '1320px'
+export const gutter = 'clamp(16px, 3.5vw, 64px)'
