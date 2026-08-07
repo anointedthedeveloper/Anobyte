@@ -5,13 +5,13 @@ import { C, S, F } from '../../styles/tokens'
 import { Section, SectionHeader } from '../ui/Wrap'
 
 const faqs = [
-  { q: 'How long does a typical project take?',     a: 'It depends entirely on scope. A focused web application usually takes 6–10 weeks. A larger product with multiple integrations can take 3–5 months. We give you a detailed timeline in the Planning phase before any code is written.' },
-  { q: 'How does your process work?',               a: 'We work in two-week sprints. Each sprint starts with a planning session and ends with a demo and written update. You always know what was built, what\'s next, and why.' },
-  { q: 'Who will actually be working on my project?',a:'Senior engineers only — no juniors, no offshore handoffs. The team you meet at the start is the team that builds the product.' },
-  { q: 'Do you take over existing codebases?',      a: 'Yes. We start with a code audit, give you an honest assessment, and agree on a plan before touching anything. We\'ve taken over many projects and have a clear process for it.' },
-  { q: 'Who owns the code when we\'re done?',       a: 'You do. On final payment, all source code, assets, and IP transfer to you without restriction. We also hand over documentation and onboarding materials.' },
-  { q: 'Do you offer ongoing support?',             a: 'Yes — we offer monthly support and maintenance retainers covering monitoring, bug fixes, dependency updates, and small improvements. Details are agreed per engagement.' },
-  { q: 'What if scope needs to change mid-project?', a: 'We expect it. Small changes are absorbed into the current sprint. Larger changes go through a transparent change order — impact on time and cost is assessed, approved by you, then implemented. No hidden extras.' },
+  { q: 'How much does software development cost?',   a: 'It depends on what you need. A business website and a custom management system are very different in scope and therefore cost. We don\'t use fixed packages for custom work because every project is different. Get in touch and tell us what you\'re trying to build — we\'ll give you a clear, honest estimate.' },
+  { q: 'How long does development take?',            a: 'A standard business website typically takes 2–4 weeks. A web application or custom system usually takes 6–12 weeks depending on scope. We give you a clear timeline before any work begins.' },
+  { q: 'Can you work with an existing system?',      a: 'Yes. If you already have software that needs improving, extending, or fixing, we can work with it. We start by understanding what you have before suggesting what to change.' },
+  { q: 'Do I need to know exactly what I want?',     a: 'Not at all. Many clients come to us with a problem or an idea rather than a specification. Part of our job is helping you figure out what needs to be built. We ask the right questions and turn that into a clear plan.' },
+  { q: 'Do you provide support after launch?',       a: 'Yes. We can continue maintaining and improving the system after it goes live. Whether that\'s fixing issues, adding features, or keeping things updated — we can stay involved as much or as little as you need.' },
+  { q: 'Can you work with businesses outside Nigeria?', a: 'Yes. We work remotely with clients wherever they are. Communication is done through whatever works best for you — video calls, messaging, or email.' },
+  { q: 'Who owns the software when it\'s finished?', a: 'You do. Everything we build for you belongs to you — source code, designs, and all related assets are handed over at project completion.' },
 ]
 
 function Item({ q, a, open, toggle, i }) {

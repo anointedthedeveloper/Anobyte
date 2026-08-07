@@ -4,8 +4,10 @@ import { AnimatePresence, motion, useScroll, useSpring } from 'framer-motion'
 import Navbar     from './components/Navbar'
 import Footer     from './components/Footer'
 import BackToTop  from './components/ui/BackToTop'
+import RippleProvider from './components/ui/RippleProvider'
 import Home         from './pages/Home'
 import ServicesPage from './pages/ServicesPage'
+import ServiceDetailPage from './pages/ServiceDetailPage'
 import ProjectsPage from './pages/ProjectsPage'
 import AboutPage    from './pages/AboutPage'
 import ProcessPage  from './pages/ProcessPage'
@@ -84,9 +86,10 @@ function AppRoutes() {
   return (
     <AnimatePresence mode="wait" initial={false}>
       <Routes location={location} key={location.pathname}>
-        <Route path="/"         element={<Home />} />
-        <Route path="/services" element={<ServicesPage />} />
-        <Route path="/projects" element={<ProjectsPage />} />
+        <Route path="/"                element={<Home />} />
+        <Route path="/services"        element={<ServicesPage />} />
+        <Route path="/services/:id"    element={<ServiceDetailPage />} />
+        <Route path="/projects"        element={<ProjectsPage />} />
         <Route path="/about"    element={<AboutPage />} />
         <Route path="/process"  element={<ProcessPage />} />
         <Route path="/contact"  element={<ContactPage />} />
@@ -100,6 +103,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <TopLoader />
+      <RippleProvider />
       <ScrollBar />
       <div style={{ display: 'flex', flexDirection: 'column', minHeight: '100vh', background: '#fff' }}>
         <Navbar />

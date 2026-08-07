@@ -105,3 +105,55 @@ h1, h2, h3, h4, h5 { overflow-wrap: break-word; word-break: break-word; }
   /* Cards — full width, less padding */
   [class*="card"] { border-radius: 14px !important; }
 }
+
+/* ──────────────────────────────────────────────
+   BUTTON HOVER & RIPPLE EFFECTS
+   Applied globally to <a> and <button> elements
+   that look like buttons (have padding + radius)
+────────────────────────────────────────────── */
+
+/* Ripple keyframe */
+@keyframes ripple {
+  0%   { transform: scale(0);   opacity: 0.38; }
+  80%  { transform: scale(2.8); opacity: 0.08; }
+  100% { transform: scale(3.2); opacity: 0; }
+}
+
+/* Any element that wants ripple — add class btn-ripple
+   OR we target the common button patterns via attribute */
+.btn-ripple,
+a[style*="border-radius"][style*="padding"],
+button[style*="border-radius"][style*="padding"] {
+  position: relative;
+  overflow: hidden;
+  /* Ensure transform transitions feel snappy */
+  transition-property: transform, box-shadow, opacity, background, color, border-color;
+  transition-duration: 0.2s;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* Ripple ink element — injected by JS via useRipple hook */
+.ripple-ink {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  transform: scale(0);
+  animation: ripple 0.55s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Lift + shadow on hover for all styled links/buttons */
+a[style*="border-radius"][style*="padding"]:hover,
+button[style*="border-radius"][style*="padding"]:hover {
+  transform: translateY(-2px);
+}
+a[style*="border-radius"][style*="padding"]:active,
+button[style*="border-radius"][style*="padding"]:active {
+  transform: translateY(0) scale(0.98);
+  transition-duration: 0.1s;
+}
+
+/* Nav links — don't lift (they have their own treatment) */
+.nav-link:hover,
+.mob-link:hover {
+  transform: none !important;
+}
