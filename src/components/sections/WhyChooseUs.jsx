@@ -1,120 +1,123 @@
 import { motion } from 'framer-motion'
-import { HiCheckCircle } from 'react-icons/hi'
-import { C, G, S, F } from '../../styles/tokens'
+import { C, G, F } from '../../styles/tokens'
 import { Section, SectionHeader } from '../ui/Wrap'
 
-const reasons = [
-  { title: 'Senior engineers only',        desc: 'Every engagement is led by engineers with 5+ years of production experience. No juniors learning on your budget.' },
-  { title: 'Transparent by default',       desc: 'Weekly updates, a shared project board, and an open line of communication. You always know exactly where things stand.' },
-  { title: 'Milestones, not surprises',    desc: 'We scope carefully and plan rigorously. Deliverables are agreed upfront. Scope changes go through a clear change process.' },
-  { title: 'Built for the long term',      desc: "Clean code, good documentation, proper tests. We hand over software you can maintain and grow — not a black box." },
-  { title: 'Post-launch support included', desc: 'We stay around after launch. Monitoring, bug fixes, and iterative improvements are part of how we work.' },
-  { title: 'One team, full ownership',     desc: 'We own the outcome end-to-end — design, engineering, QA, and deployment — so nothing falls through the cracks.' },
+const steps = [
+  { n: '01', title: 'Understand', desc: 'We start by understanding your idea, business, users, and requirements.' },
+  { n: '02', title: 'Plan',       desc: 'We define the features, technology, scope, and development plan before building.' },
+  { n: '03', title: 'Build',      desc: 'We design and develop the solution in clear stages, keeping you involved throughout.' },
+  { n: '04', title: 'Launch',     desc: 'We test, deploy, and make sure everything is ready for real-world use.' },
+  { n: '05', title: 'Improve',    desc: 'After launch, we can continue maintaining, improving, and expanding the system as your needs change.' },
 ]
 
-const pillars = [
-  { label: 'Code Quality',    desc: 'Clean, tested, documented',           accent: C.blue500,   bg: C.blue50 },
-  { label: 'Communication',   desc: 'Weekly syncs + shared board',         accent: C.violet500, bg: C.violetLight },
-  { label: 'Delivery',        desc: 'On scope, on schedule',               accent: '#009955',   bg: '#EDFFF7' },
-  { label: 'Support',         desc: 'Post-launch & ongoing maintenance',   accent: '#D97706',   bg: '#FFFBEB' },
+const reasons = [
+  { title: 'Built around your requirements', desc: "We don't force every project into the same template. The solution starts with what you actually need." },
+  { title: 'Clear communication',            desc: 'You know what we\'re working on, what\'s completed, and what comes next.' },
+  { title: 'Practical technology',           desc: 'We choose technologies based on the project rather than using technology simply because it\'s popular.' },
+  { title: 'Built to grow',                  desc: 'We aim to create software that can be maintained, improved, and expanded as your requirements change.' },
+  { title: 'Direct collaboration',           desc: 'You work directly with the people building your product.' },
+  { title: 'Support after launch',           desc: "Our relationship doesn't have to end when the software goes live. We can continue maintaining and improving it." },
 ]
 
 export default function WhyChooseUs() {
   return (
-    <Section bg={C.bg}>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 64, alignItems: 'start' }} className="why-grid">
+    <>
+      {/* ── Section 4: How We Work ── */}
+      <Section bg="#fff">
+        <SectionHeader
+          eyebrow="How We Work"
+          title="A Straightforward Way"
+          titleGrad="to Build Software"
+          subtitle="From the first conversation to deployment, we keep the process clear."
+        />
 
-        {/* Left */}
-        <motion.div
-          initial={{ opacity: 0, x: -28 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-        >
-          <p style={{ fontSize: 11, fontWeight: 700, fontFamily: F.head, letterSpacing: '0.14em', textTransform: 'uppercase', color: C.blue500, marginBottom: 14 }}>
-            Why AnoByte
-          </p>
-          <h2 style={{ fontFamily: F.head, fontWeight: 800, fontSize: 'clamp(1.8rem,3vw,2.6rem)', letterSpacing: '-0.033em', lineHeight: 1.12, color: C.ink, marginBottom: 18 }}>
-            How we're different
-          </h2>
-          <p style={{ fontSize: 17, lineHeight: 1.75, color: C.body, marginBottom: 36 }}>
-            We've seen what goes wrong on software projects — poor communication, scope creep, brittle code. We've built our process specifically to avoid all of it.
-          </p>
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-            {reasons.map((r, i) => (
-              <motion.div
-                key={r.title}
-                initial={{ opacity: 0, x: -18 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.45, delay: i * 0.08 }}
-                style={{ display: 'flex', gap: 14 }}
-              >
-                <HiCheckCircle style={{ color: C.blue500, flexShrink: 0, marginTop: 2 }} size={18} />
-                <div>
-                  <p style={{ fontFamily: F.head, fontWeight: 700, fontSize: 15, color: C.ink, marginBottom: 3 }}>{r.title}</p>
-                  <p style={{ fontSize: 14, lineHeight: 1.65, color: C.body }}>{r.desc}</p>
+        <div className="process-strip">
+          {steps.map((s, i) => (
+            <motion.div
+              key={s.n}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45, delay: i * 0.08 }}
+              style={{ position: 'relative' }}
+            >
+              {/* connector line */}
+              {i < steps.length - 1 && (
+                <div className="step-line" />
+              )}
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                <div style={{ width: 44, height: 44, borderRadius: 12, background: G.brand, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                  <span style={{ fontFamily: F.head, fontWeight: 800, fontSize: 13, color: '#fff' }}>{s.n}</span>
                 </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Right — dark panel */}
-        <motion.div
-          initial={{ opacity: 0, x: 28 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-          style={{ position: 'relative', borderRadius: 24, overflow: 'hidden' }}
-        >
-          <div style={{ background: '#06081A', padding: 36, position: 'relative' }}>
-            <div className="bg-grid" style={{ position: 'absolute', inset: 0, opacity: 0.1 }} />
-            <div style={{ position: 'absolute', top: -40, right: -40, width: 200, height: 200, borderRadius: '50%', background: C.blue500, filter: 'blur(80px)', opacity: 0.3 }} />
-            <div style={{ position: 'absolute', bottom: -30, left: -30, width: 160, height: 160, borderRadius: '50%', background: C.violet500, filter: 'blur(70px)', opacity: 0.22 }} />
-
-            <div style={{ position: 'relative' }}>
-              <p style={{ fontSize: 11, fontWeight: 700, fontFamily: F.head, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.35)', marginBottom: 20 }}>
-                Our Four Pillars
-              </p>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
-                {pillars.map((p, i) => (
-                  <motion.div
-                    key={p.label}
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.4, delay: i * 0.1 }}
-                    style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 16, padding: '18px 18px 20px' }}
-                  >
-                    <div style={{ width: 36, height: 36, borderRadius: 10, background: `${p.accent}22`, display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: 12 }}>
-                      <div style={{ width: 10, height: 10, borderRadius: '50%', background: p.accent }} />
-                    </div>
-                    <p style={{ fontFamily: F.head, fontWeight: 700, fontSize: 14, color: '#fff', marginBottom: 4 }}>{p.label}</p>
-                    <p style={{ fontSize: 12, lineHeight: 1.55, color: 'rgba(255,255,255,0.42)' }}>{p.desc}</p>
-                  </motion.div>
-                ))}
+                <div>
+                  <p style={{ fontFamily: F.head, fontWeight: 700, fontSize: 15, color: C.ink, marginBottom: 6 }}>{s.title}</p>
+                  <p style={{ fontSize: 13, lineHeight: 1.7, color: C.body }}>{s.desc}</p>
+                </div>
               </div>
+            </motion.div>
+          ))}
+        </div>
+      </Section>
 
-              {/* Divider */}
-              <div style={{ height: 1, background: 'rgba(255,255,255,0.07)', margin: '24px 0' }} />
+      {/* ── Section 5: Why Work With Anobyte ── */}
+      <Section bg={C.bg}>
+        <SectionHeader
+          eyebrow="Why Anobyte"
+          title="Why Work With"
+          titleGrad="Anobyte?"
+          subtitle="We build software the way you'd want it built — clearly, practically, and around your actual requirements."
+        />
 
-              <p style={{ fontSize: 13, lineHeight: 1.7, color: 'rgba(255,255,255,0.45)', fontStyle: 'italic' }}>
-                "We treat every project like it's our own product — because if it fails, that's on us too."
-              </p>
-              <p style={{ fontSize: 12, fontWeight: 600, fontFamily: F.head, color: 'rgba(255,255,255,0.28)', marginTop: 8 }}>
-                — AnoByte Engineering Team
-              </p>
-            </div>
-          </div>
-        </motion.div>
-      </div>
+        <div className="why-grid">
+          {reasons.map((r, i) => (
+            <motion.div
+              key={r.title}
+              initial={{ opacity: 0, y: 18 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.42, delay: i * 0.07 }}
+              style={{
+                background: '#fff',
+                borderRadius: 16,
+                border: `1px solid ${C.border}`,
+                padding: '22px 24px 26px',
+                boxShadow: '0 1px 3px rgba(0,0,0,0.04), 0 4px 16px rgba(0,0,0,0.06)',
+              }}
+            >
+              <div style={{ width: 8, height: 8, borderRadius: '50%', background: G.brand, marginBottom: 14,
+                background: 'linear-gradient(135deg, #4F72F8, #8B3FF5)'
+              }} />
+              <p style={{ fontFamily: F.head, fontWeight: 700, fontSize: 15, color: C.ink, marginBottom: 8 }}>{r.title}</p>
+              <p style={{ fontSize: 14, lineHeight: 1.7, color: C.body }}>{r.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </Section>
 
       <style>{`
-        .why-grid { grid-template-columns: 1fr 1fr; }
-        @media (max-width: 840px) { .why-grid { grid-template-columns: 1fr; } }
+        .process-strip {
+          display: grid;
+          grid-template-columns: repeat(5, 1fr);
+          gap: clamp(16px, 2.5vw, 28px);
+          position: relative;
+        }
+        .step-line {
+          display: none;
+        }
+        .why-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: clamp(14px, 2vw, 20px);
+        }
+        @media (max-width: 900px) {
+          .process-strip { grid-template-columns: repeat(3, 1fr); }
+          .why-grid      { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 540px) {
+          .process-strip { grid-template-columns: 1fr; gap: 20px; }
+          .why-grid      { grid-template-columns: 1fr; }
+        }
       `}</style>
-    </Section>
+    </>
   )
 }

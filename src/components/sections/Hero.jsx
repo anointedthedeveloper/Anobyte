@@ -36,13 +36,12 @@ export default function Hero() {
           <div className="hero-copy">
 
             <motion.h1 {...fade(0)} className="hero-h1">
-              We Build Digital{' '}
-              <span className="tg-anim">Solutions</span>{' '}
-              That Move Your Business Forward.
+              We Build Software That
+              {' '}<span className="tg-anim">Solves Real Problems.</span>
             </motion.h1>
 
             <motion.p {...fade(1)} className="hero-sub">
-              From modern websites to custom software and business systems, we build tools that simplify operations, automate processes, and help you grow with confidence.
+              We design and develop websites, web applications, custom software, and business systems built around your goals, workflows, and users.
             </motion.p>
 
             <motion.div {...fade(2)} style={{ display: 'flex', flexWrap: 'wrap', gap: 14 }}>
