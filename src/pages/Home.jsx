@@ -3,8 +3,6 @@ import Hero from '../components/sections/Hero'
 import ServicesOverview from '../components/sections/ServicesOverview'
 import ProjectsOverview from '../components/sections/ProjectsOverview'
 import WhyChooseUs from '../components/sections/WhyChooseUs'
-import Technologies from '../components/sections/Technologies'
-import FAQ from '../components/sections/FAQ'
 import HomeCTA from '../components/sections/HomeCTA'
 
 export default function Home() {
@@ -14,8 +12,6 @@ export default function Home() {
       <ServicesOverview />
       <ProjectsOverview />
       <WhyChooseUs />
-      <Technologies />
-      <FAQ />
       <HomeCTA />
     </PageWrapper>
   )

@@ -35,32 +35,17 @@ export default function Hero() {
           {/* ── LEFT: copy ── */}
           <div className="hero-copy">
 
-            <motion.div {...fade(0)} style={{ marginBottom: 24 }}>
-              <span style={{
-                display: 'inline-flex', alignItems: 'center', gap: 8,
-                padding: '6px 16px', borderRadius: 100,
-                background: 'rgba(79,114,248,0.08)',
-                border: '1px solid rgba(79,114,248,0.22)',
-                fontSize: 11, fontWeight: 700, fontFamily: F.head,
-                letterSpacing: '0.12em', textTransform: 'uppercase',
-                color: C.blue500,
-              }}>
-                <span className="anim-pulse" style={{ display: 'block', width: 6, height: 6, borderRadius: '50%', background: C.blue500, flexShrink: 0 }} />
-                Software Solutions That Deliver Results
-              </span>
-            </motion.div>
-
-            <motion.h1 {...fade(1)} className="hero-h1">
+            <motion.h1 {...fade(0)} className="hero-h1">
               We Build Digital{' '}
               <span className="tg-anim">Solutions</span>{' '}
               That Move Your Business Forward.
             </motion.h1>
 
-            <motion.p {...fade(2)} className="hero-sub">
+            <motion.p {...fade(1)} className="hero-sub">
               From modern websites to custom software and business systems, we build tools that simplify operations, automate processes, and help you grow with confidence.
             </motion.p>
 
-            <motion.div {...fade(3)} style={{ display: 'flex', flexWrap: 'wrap', gap: 14 }}>
+            <motion.div {...fade(2)} style={{ display: 'flex', flexWrap: 'wrap', gap: 14 }}>
               <Link to="/contact" className="hero-btn-primary">
                 Start a Project <HiArrowRight size={17} />
               </Link>
@@ -224,16 +209,14 @@ export default function Hero() {
           padding: 13px 28px; border-radius: 12px;
           font-size: 15px; font-weight: 600;
           font-family: "Space Grotesk", sans-serif;
-          color: ${C.ink3}; background: #fff;
-          border: 1.5px solid ${C.border}; text-decoration: none;
-          transition: border-color 0.2s, background 0.2s, transform 0.15s;
+          color: ${C.ink3}; background: transparent;
+          border: 1.5px solid ${C.ink3}; text-decoration: none;
+          transition: color 0.22s, border-color 0.22s;
           white-space: nowrap;
         }
         .hero-btn-secondary:hover {
-          border-color: ${C.blue200};
-          background: ${C.blue50};
           color: ${C.blue500};
-          transform: translateY(-1px);
+          border-color: ${C.blue500};
         }
 
         /* Right image column — bleeds to right edge */
