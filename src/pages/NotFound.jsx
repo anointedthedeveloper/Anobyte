@@ -7,7 +7,7 @@ import PageWrapper from '../components/ui/PageWrapper'
 export default function NotFound() {
   return (
     <PageWrapper>
-      <div style={{ minHeight: '100vh', background: '#06081A', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden' }}>
+      <div style={{ minHeight: '100vh', background: 'linear-gradient(145deg, #1a1f4e 0%, #0d1035 100%)', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative', overflow: 'hidden' }}>
         <div className="bg-grid" style={{ position: 'absolute', inset: 0, opacity: 0.08 }} />
         <div style={{ position: 'absolute', top: '20%', left: '10%', width: 300, height: 300, borderRadius: '50%', background: C.blue500, filter: 'blur(120px)', opacity: 0.2 }} />
         <div style={{ position: 'absolute', bottom: '15%', right: '10%', width: 240, height: 240, borderRadius: '50%', background: C.violet500, filter: 'blur(100px)', opacity: 0.16 }} />

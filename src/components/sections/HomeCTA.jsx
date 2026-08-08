@@ -8,6 +8,8 @@ export default function HomeCTA() {
   const { pathname } = useLocation()
   if (pathname === '/contact') return null
 
+  const onProjects = pathname === '/projects'
+
   return (
     <section style={{ background: C.bg, padding: 'clamp(56px,8vw,96px) 0' }}>
       <div style={{ maxWidth: maxW, margin: '0 auto', padding: `0 ${gutter}` }}>
@@ -17,7 +19,6 @@ export default function HomeCTA() {
           viewport={{ once: true }}
           transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
           style={{
-            /* Brand gradient background — matches the logo */
             background: G.brand,
             borderRadius: 24,
             overflow: 'hidden',
@@ -25,16 +26,11 @@ export default function HomeCTA() {
             padding: 'clamp(40px,6vw,68px)',
           }}
         >
-          {/* Subtle grid overlay */}
           <div className="bg-grid" style={{ position: 'absolute', inset: 0, opacity: 0.08 }} />
-
-          {/* Light orbs */}
           <div style={{ position: 'absolute', top: -50, right: -50, width: 280, height: 280, borderRadius: '50%', background: '#fff', filter: 'blur(100px)', opacity: 0.12 }} />
           <div style={{ position: 'absolute', bottom: -30, left: '30%', width: 200, height: 200, borderRadius: '50%', background: '#4BBCFF', filter: 'blur(80px)', opacity: 0.18 }} />
 
           <div style={{ position: 'relative', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: 32 }}>
-
-            {/* Text */}
             <div style={{ maxWidth: 520 }}>
               <p style={{ fontSize: 11, fontWeight: 700, fontFamily: F.head, letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.6)', marginBottom: 14 }}>
                 Ready to start?
@@ -47,7 +43,6 @@ export default function HomeCTA() {
               </p>
             </div>
 
-            {/* Buttons */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12, flexShrink: 0 }}>
               <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
                 <Link
@@ -64,24 +59,25 @@ export default function HomeCTA() {
                   Start a Conversation <HiArrowRight size={15} />
                 </Link>
               </motion.div>
-              <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
-                <Link
-                  to="/projects"
-                  style={{
-                    display: 'inline-flex', alignItems: 'center', gap: 8,
-                    padding: '12px 28px', borderRadius: 12,
-                    fontSize: 15, fontWeight: 600, fontFamily: F.head,
-                    color: 'rgba(255,255,255,0.88)',
-                    background: 'rgba(255,255,255,0.12)',
-                    border: '1.5px solid rgba(255,255,255,0.25)',
-                    textDecoration: 'none', whiteSpace: 'nowrap',
-                  }}
-                >
-                  View Our Projects
-                </Link>
-              </motion.div>
+              {!onProjects && (
+                <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>
+                  <Link
+                    to="/projects"
+                    style={{
+                      display: 'inline-flex', alignItems: 'center', gap: 8,
+                      padding: '12px 28px', borderRadius: 12,
+                      fontSize: 15, fontWeight: 600, fontFamily: F.head,
+                      color: 'rgba(255,255,255,0.88)',
+                      background: 'rgba(255,255,255,0.12)',
+                      border: '1.5px solid rgba(255,255,255,0.25)',
+                      textDecoration: 'none', whiteSpace: 'nowrap',
+                    }}
+                  >
+                    View Our Projects
+                  </Link>
+                </motion.div>
+              )}
             </div>
-
           </div>
         </motion.div>
       </div>

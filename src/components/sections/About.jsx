@@ -47,15 +47,15 @@ export default function About() {
                 Our Mission
               </p>
               <h3 style={{ fontFamily: F.head, fontWeight: 800, fontSize: 'clamp(1.5rem,2.4vw,2rem)', letterSpacing: '-0.03em', lineHeight: 1.2, color: '#fff', marginBottom: 18 }}>
-                Build software that actually works.
+                We build software that solves real problems.
               </h3>
               <p style={{ fontSize: 15, lineHeight: 1.8, color: 'rgba(255,255,255,0.50)' }}>
-                Not just software that demos well — software that performs in production, survives edge cases, and does not need to be rewritten in eighteen months.
+                Not just software that ships — software that fits the way you actually work, holds up under real use, and doesn't need to be replaced in a year.
               </p>
               {/* Gradient rule */}
               <div style={{ marginTop: 32, height: 1, background: 'linear-gradient(90deg, rgba(79,114,248,0.5) 0%, rgba(139,63,245,0.5) 60%, transparent 100%)' }} />
               <p style={{ marginTop: 16, fontSize: 13, color: 'rgba(255,255,255,0.28)', fontStyle: 'italic', lineHeight: 1.6 }}>
-                "Every line of code is a commitment to the people who'll use it."
+                "Built for the people who use it, not just the demo."
               </p>
             </div>
           </motion.div>
@@ -159,7 +159,7 @@ export default function About() {
           align-items: stretch;
         }
         .mission-card {
-          background: #06081A;
+          background: linear-gradient(145deg, #1a1f4e 0%, #0d1035 100%);
           border-radius: 20px;
           padding: clamp(28px, 4vw, 44px);
           position: relative;

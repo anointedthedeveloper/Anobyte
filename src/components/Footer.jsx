@@ -5,6 +5,16 @@ import { HiArrowRight } from 'react-icons/hi'
 import { HiEnvelope, HiMapPin, HiPhone } from 'react-icons/hi2'
 import { C, G, S, F, maxW, gutter } from '../styles/tokens'
 
+const WHATSAPP_NUMBER = '2348101209470'
+const WHATSAPP_URL    = `https://wa.me/${WHATSAPP_NUMBER}`
+
+const WhatsAppIcon = () => (
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12 0C5.373 0 0 5.373 0 12c0 2.117.554 4.103 1.523 5.824L.057 23.882l6.231-1.635A11.945 11.945 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.882a9.88 9.88 0 01-5.031-1.375l-.361-.214-3.741.981.999-3.648-.235-.374A9.859 9.859 0 012.118 12C2.118 6.533 6.533 2.118 12 2.118c5.467 0 9.882 4.415 9.882 9.882 0 5.468-4.415 9.882-9.882 9.882z"/>
+  </svg>
+)
+
 const NAV_COLS = [
   {
     heading: 'Company',
@@ -18,19 +28,28 @@ const NAV_COLS = [
   {
     heading: 'Services',
     links: [
-      { l: 'Web Development',    to: '/services' },
-      { l: 'Custom Software',    to: '/services' },
-      { l: 'Business Systems',   to: '/services' },
-      { l: 'Mobile Applications',to: '/services' },
-      { l: 'APIs & Integrations',to: '/services' },
+      { l: 'Web Development',    to: '/services/websites-web-apps'         },
+      { l: 'Custom Software',    to: '/services/custom-software'            },
+      { l: 'Business Systems',   to: '/services/custom-software'            },
+      { l: 'Mobile Applications',to: '/services/mobile-applications'        },
+      { l: 'APIs & Integrations',to: '/services/api-integrations'           },
     ],
   },
 ]
 
 const SOCIALS = [
   {
+    label: 'WhatsApp',
+    href: WHATSAPP_URL,
+    hoverColor: 'rgba(37,211,102,0.18)',
+    hoverBorder: 'rgba(37,211,102,0.4)',
+    icon: <WhatsAppIcon />,
+  },
+  {
     label: 'LinkedIn',
     href: '#',
+    hoverColor: 'rgba(79,114,248,0.16)',
+    hoverBorder: 'rgba(79,114,248,0.38)',
     icon: (
       <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
         <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
@@ -41,6 +60,8 @@ const SOCIALS = [
   {
     label: 'GitHub',
     href: 'https://github.com/AnoByte-Technologies',
+    hoverColor: 'rgba(79,114,248,0.16)',
+    hoverBorder: 'rgba(79,114,248,0.38)',
     icon: (
       <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
         <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
@@ -50,6 +71,8 @@ const SOCIALS = [
   {
     label: 'Twitter / X',
     href: '#',
+    hoverColor: 'rgba(79,114,248,0.16)',
+    hoverBorder: 'rgba(79,114,248,0.38)',
     icon: (
       <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
         <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
@@ -179,6 +202,11 @@ export default function Footer() {
               {[
                 { Icon: HiEnvelope, text: 'anobytetechnologies@gmail.com', href: 'mailto:anobytetechnologies@gmail.com' },
                 { Icon: HiPhone,    text: '+234 810 120 9470',              href: 'tel:+2348101209470'                  },
+                {
+                  Icon: () => <WhatsAppIcon />,
+                  text: 'Chat on WhatsApp',
+                  href: WHATSAPP_URL,
+                },
                 { Icon: HiMapPin,   text: 'Remote · Worldwide',            href: null },
               ].map(({ Icon, text, href }) => (
                 <div key={text} style={{ display: 'flex', alignItems: 'center', gap: 9 }}>
@@ -220,8 +248,8 @@ export default function Footer() {
                     transition: 'all 0.18s',
                   }}
                   onMouseEnter={e => {
-                    e.currentTarget.style.background = 'rgba(79,114,248,0.16)'
-                    e.currentTarget.style.borderColor = 'rgba(79,114,248,0.38)'
+                    e.currentTarget.style.background = s.hoverColor
+                    e.currentTarget.style.borderColor = s.hoverBorder
                     e.currentTarget.style.color = '#fff'
                     e.currentTarget.style.transform = 'translateY(-2px)'
                   }}
@@ -310,7 +338,7 @@ export default function Footer() {
                     type="email"
                     value={email}
                     onChange={e => setEmail(e.target.value)}
-                    placeholder="your@email.com"
+                    placeholder="Enter your email address"
                     required
                     style={{
                       width: '100%', boxSizing: 'border-box',
