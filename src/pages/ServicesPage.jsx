@@ -1,6 +1,6 @@
 import PageWrapper from '../components/ui/PageWrapper'
+import PageHero from '../components/ui/PageHero'
 import Services from '../components/sections/Services'
-import FAQ from '../components/sections/FAQ'
 import HomeCTA from '../components/sections/HomeCTA'
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
@@ -78,7 +78,6 @@ export default function ServicesPage() {
     <PageWrapper>
       <ServicesHero />
       <Services />
-      <FAQ />
       <HomeCTA />
     </PageWrapper>
   )

@@ -1,5 +1,13 @@
 import { useState, useEffect, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import {
+  HiOutlineWrenchScrewdriver,
+  HiOutlineChatBubbleLeftRight,
+  HiOutlineLightBulb,
+  HiOutlineShieldCheck,
+  HiOutlineUserGroup,
+  HiOutlineArrowPathRoundedSquare,
+} from 'react-icons/hi2'
 import { C, G, F, S } from '../../styles/tokens'
 import { Section, SectionHeader } from '../ui/Wrap'
 
@@ -14,12 +22,12 @@ const steps = [
 
 /* ── What you get working with us ── */
 const reasons = [
-  { title: 'Software built around you',   desc: "We don't apply a template to your problem. We understand what you need first, then figure out the best way to build it.", icon: '◎' },
-  { title: 'Clear communication',         desc: 'You know what we are working on, what is done, and what comes next. No surprises.',                                        icon: '◈' },
-  { title: 'Practical choices',           desc: 'We choose technologies and approaches that fit the project, not whatever is trending.',                                    icon: '⬡' },
-  { title: 'Built to last',               desc: 'We write software that can be maintained, improved, and handed over without headaches.',                                  icon: '⊞' },
-  { title: 'You work with the builders',  desc: 'No middlemen. The people you talk to are the same people building your product.',                                         icon: '◉' },
-  { title: 'We stay after launch',        desc: 'Delivery is not the end. We can continue maintaining and improving the system after it goes live.',                       icon: '◐' },
+  { title: 'Software built around you',   desc: "We don't apply a template to your problem. We understand what you need first, then figure out the best way to build it.", Icon: HiOutlineWrenchScrewdriver, accent: C.blue500,   bg: C.blue50 },
+  { title: 'Clear communication',         desc: 'You know what we are working on, what is done, and what comes next. No surprises.',                                        Icon: HiOutlineChatBubbleLeftRight, accent: C.violet500, bg: C.violetLight },
+  { title: 'Practical choices',           desc: 'We choose technologies and approaches that fit the project, not whatever is trending.',                                    Icon: HiOutlineLightBulb,           accent: '#009955',   bg: '#EDFFF7' },
+  { title: 'Built to last',               desc: 'We write software that can be maintained, improved, and handed over without headaches.',                                  Icon: HiOutlineShieldCheck,         accent: '#D97706',   bg: '#FFFBEB' },
+  { title: 'You work with the builders',  desc: 'No middlemen. The people you talk to are the same people building your product.',                                         Icon: HiOutlineUserGroup,           accent: '#0284C7',   bg: '#EFF9FF' },
+  { title: 'We stay after launch',        desc: 'Delivery is not the end. We can continue maintaining and improving the system after it goes live.',                       Icon: HiOutlineArrowPathRoundedSquare, accent: C.blue500, bg: C.blue50 },
 ]
 
 /* ── Step slideshow ── */
@@ -169,31 +177,43 @@ export default function WhyChooseUs() {
           {reasons.map((r, i) => (
             <motion.div
               key={r.title}
-              initial={{ opacity: 0, y: 18 }}
+              className="expect-card"
+              initial={{ opacity: 0, y: 22 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.4, delay: i * 0.07 }}
-              style={{
-                background: '#fff',
-                borderRadius: 16,
-                border: `1px solid ${C.border}`,
-                padding: '24px 22px 28px',
-                boxShadow: S.card,
-                transition: 'box-shadow 0.2s, transform 0.2s',
-              }}
-              onMouseEnter={e => { e.currentTarget.style.boxShadow = S.cardH; e.currentTarget.style.transform = 'translateY(-2px)' }}
-              onMouseLeave={e => { e.currentTarget.style.boxShadow = S.card;  e.currentTarget.style.transform = 'none' }}
+              transition={{ duration: 0.45, delay: i * 0.08 }}
             >
-              {/* Icon circle with gradient */}
-              <div style={{
-                width: 36, height: 36, borderRadius: 10, marginBottom: 14,
-                background: G.brand,
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-              }}>
-                <span style={{ fontSize: 15, color: '#fff', lineHeight: 1 }}>{r.icon}</span>
+              {/* Accent left bar */}
+              <div className="expect-bar" style={{ background: r.accent }} />
+
+              <div style={{ padding: '26px 24px 30px 28px', display: 'flex', flexDirection: 'column', height: '100%' }}>
+                {/* Icon + number row */}
+                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 18 }}>
+                  <div style={{
+                    width: 46, height: 46, borderRadius: 13,
+                    background: r.bg,
+                    border: `1px solid ${r.accent}25`,
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    flexShrink: 0,
+                  }}>
+                    <r.Icon size={22} style={{ color: r.accent }} />
+                  </div>
+                  <span style={{
+                    fontFamily: F.head, fontWeight: 900,
+                    fontSize: 32, color: '#F0F1F8', lineHeight: 1,
+                    letterSpacing: '-0.04em',
+                  }}>
+                    {String(i + 1).padStart(2, '0')}
+                  </span>
+                </div>
+
+                <p style={{ fontFamily: F.head, fontWeight: 700, fontSize: 15.5, color: C.ink, marginBottom: 10, lineHeight: 1.3 }}>
+                  {r.title}
+                </p>
+                <p style={{ fontSize: 13.5, lineHeight: 1.8, color: C.body }}>
+                  {r.desc}
+                </p>
               </div>
-              <p style={{ fontFamily: F.head, fontWeight: 700, fontSize: 15, color: C.ink, marginBottom: 8 }}>{r.title}</p>
-              <p style={{ fontSize: 13, lineHeight: 1.75, color: C.body }}>{r.desc}</p>
             </motion.div>
           ))}
         </div>
@@ -203,7 +223,26 @@ export default function WhyChooseUs() {
         .expect-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: clamp(12px, 2vw, 20px);
+          gap: clamp(14px, 2vw, 22px);
+        }
+        .expect-card {
+          position: relative;
+          background: #fff;
+          border-radius: 18px;
+          border: 1px solid ${C.border};
+          box-shadow: ${S.card};
+          overflow: hidden;
+          display: flex;
+          transition: box-shadow 0.22s, transform 0.22s;
+        }
+        .expect-card:hover {
+          box-shadow: ${S.cardH};
+          transform: translateY(-3px);
+        }
+        .expect-bar {
+          width: 4px;
+          flex-shrink: 0;
+          border-radius: 18px 0 0 18px;
         }
         @media (max-width: 860px) { .expect-grid { grid-template-columns: repeat(2,1fr); } }
         @media (max-width: 480px) { .expect-grid { grid-template-columns: 1fr; } }

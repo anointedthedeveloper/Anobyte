@@ -252,7 +252,7 @@ export default function Hero() {
 
         /* ── What We Do ── */
         .wwd-section {
-          background: #fff;
+          background: #fff url('/w1bg.png') center / cover no-repeat;
           border-top: 1px solid ${C.border};
           padding: clamp(56px, 7vw, 96px) clamp(20px, 5vw, 80px);
         }
