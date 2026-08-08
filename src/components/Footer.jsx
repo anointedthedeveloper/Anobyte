@@ -118,7 +118,7 @@ export default function Footer() {
               </Link>
             </motion.div>
             <a
-              href="mailto:hello@anobyte.com"
+              href="mailto:anobytetechnologies@gmail.com"
               style={{
                 display: 'inline-flex', alignItems: 'center', gap: 7,
                 fontSize: 13, color: 'rgba(255,255,255,0.38)',
@@ -128,7 +128,7 @@ export default function Footer() {
               onMouseEnter={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.75)' }}
               onMouseLeave={e => { e.currentTarget.style.color = 'rgba(255,255,255,0.38)' }}
             >
-              <HiEnvelope size={13} /> hello@anobyte.com
+              <HiEnvelope size={13} /> anobytetechnologies@gmail.com
             </a>
           </div>
         </div>
@@ -177,8 +177,9 @@ export default function Footer() {
             {/* Contact info */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: 10, marginBottom: 28 }}>
               {[
-                { Icon: HiEnvelope, text: 'hello@anobyte.com', href: 'mailto:hello@anobyte.com' },
-                { Icon: HiMapPin,   text: 'Remote · Worldwide', href: null },
+                { Icon: HiEnvelope, text: 'anobytetechnologies@gmail.com', href: 'mailto:anobytetechnologies@gmail.com' },
+                { Icon: HiPhone,    text: '+234 810 120 9470',              href: 'tel:+2348101209470'                  },
+                { Icon: HiMapPin,   text: 'Remote · Worldwide',            href: null },
               ].map(({ Icon, text, href }) => (
                 <div key={text} style={{ display: 'flex', alignItems: 'center', gap: 9 }}>
                   <div style={{

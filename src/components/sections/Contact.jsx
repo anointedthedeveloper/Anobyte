@@ -5,9 +5,9 @@ import { HiEnvelope, HiPhone, HiMapPin } from 'react-icons/hi2'
 import { C, S, F, G, maxW, gutter } from '../../styles/tokens'
 
 const contactDetails = [
-  { Icon: HiEnvelope, label: 'Email', value: 'hello@anobyte.com',  href: 'mailto:hello@anobyte.com' },
-  { Icon: HiPhone,    label: 'Phone', value: '+1 (555) 010-2030',  href: 'tel:+15550102030'         },
-  { Icon: HiMapPin,   label: 'Base',  value: 'Remote · Worldwide', href: null                       },
+  { Icon: HiEnvelope, label: 'Email', value: 'anobytetechnologies@gmail.com', href: 'mailto:anobytetechnologies@gmail.com' },
+  { Icon: HiPhone,    label: 'Phone', value: '+234 810 120 9470',              href: 'tel:+2348101209470'                  },
+  { Icon: HiMapPin,   label: 'Base',  value: 'Remote · Worldwide',            href: null                                   },
 ]
 
 const projectTypes = ['Web Application', 'Mobile App', 'SaaS Product', 'API / Backend', 'UI/UX Design', 'Business System', 'Existing Codebase', 'Other']

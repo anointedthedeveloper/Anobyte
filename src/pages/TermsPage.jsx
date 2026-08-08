@@ -44,7 +44,7 @@ const sections = [
   },
   {
     title: 'Governing Law & Changes',
-    body: 'These terms are governed by applicable law. We may update them from time to time — material changes will be reflected by an updated date above. Questions? Reach us at hello@anobyte.com.',
+    body: 'These terms are governed by applicable law. We may update them from time to time — material changes will be reflected by an updated date above. Questions? Reach us at anobytetechnologies@gmail.com.',
   },
 ]
 

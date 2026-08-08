@@ -28,7 +28,7 @@ const sections = [
   },
   {
     title: 'Your Rights',
-    body: 'You may request access to, correction of, or deletion of any personal information we hold about you. To exercise these rights, contact us at hello@anobyte.com and we will respond promptly.',
+    body: 'You may request access to, correction of, or deletion of any personal information we hold about you. To exercise these rights, contact us at anobytetechnologies@gmail.com and we will respond promptly.',
   },
   {
     title: 'Changes to This Policy',
@@ -36,7 +36,7 @@ const sections = [
   },
   {
     title: 'Contact Us',
-    body: 'Questions about this Privacy Policy? Reach us at hello@anobyte.com and we will be happy to help.',
+    body: 'Questions about this Privacy Policy? Reach us at anobytetechnologies@gmail.com and we will be happy to help.',
   },
 ]
 
