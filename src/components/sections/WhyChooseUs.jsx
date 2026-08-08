@@ -52,7 +52,7 @@ function ProcessSlider() {
       style={{ userSelect: 'none' }}
     >
       {/* Step number pills row */}
-      <div style={{ display: 'flex', gap: 8, marginBottom: 28, flexWrap: 'wrap' }}>
+      <div className="process-pills">
         {steps.map((st, i) => (
           <button
             key={st.n}
@@ -66,9 +66,11 @@ function ProcessSlider() {
               background: i === active ? s.color : C.bg,
               color: i === active ? '#fff' : C.muted,
               boxShadow: i === active ? `0 2px 10px ${s.color}44` : 'none',
+              whiteSpace: 'nowrap',
             }}
           >
-            {st.n} {st.title}
+            <span className="pill-num">{st.n}</span>
+            <span className="pill-title">{st.title}</span>
           </button>
         ))}
       </div>
@@ -243,6 +245,17 @@ export default function WhyChooseUs() {
           width: 4px;
           flex-shrink: 0;
           border-radius: 18px 0 0 18px;
+        }
+        .process-pills {
+          display: flex;
+          gap: 8px;
+          margin-bottom: 28px;
+          flex-wrap: wrap;
+        }
+        .pill-title { display: inline; }
+        @media (max-width: 480px) {
+          .pill-title { display: none; }
+          .process-pills button { padding: 6px 12px; }
         }
         @media (max-width: 860px) { .expect-grid { grid-template-columns: repeat(2,1fr); } }
         @media (max-width: 480px) { .expect-grid { grid-template-columns: 1fr; } }

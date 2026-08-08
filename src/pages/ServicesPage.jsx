@@ -10,10 +10,8 @@ import { C, G, F, S, maxW, gutter } from '../styles/tokens'
 /* ── Services page hero — light, no dark background ── */
 function ServicesHero() {
   return (
-    <section style={{
+    <section className="svc-hero-section" style={{
       background: '#fff',
-      paddingTop: 'clamp(96px,12vw,136px)',
-      paddingBottom: 'clamp(56px,7vw,88px)',
       position: 'relative', overflow: 'hidden',
     }}>
       <div className="bg-grid" style={{ position: 'absolute', inset: 0, opacity: 0.45, pointerEvents: 'none' }} />
@@ -35,7 +33,7 @@ function ServicesHero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-          style={{ fontFamily: F.head, fontWeight: 800, fontSize: 'clamp(2.2rem,4.5vw,3.6rem)', letterSpacing: '-0.04em', lineHeight: 1.1, color: C.ink, marginBottom: 18 }}
+          style={{ fontFamily: F.head, fontWeight: 800, fontSize: 'clamp(2rem,4.5vw,3.6rem)', letterSpacing: '-0.04em', lineHeight: 1.1, color: C.ink, marginBottom: 18 }}
         >
           Digital Solutions{' '}
           <span className="tg">Built Around Your Needs</span>
@@ -45,7 +43,7 @@ function ServicesHero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.55, delay: 0.18 }}
-          style={{ fontSize: 17, lineHeight: 1.75, color: C.body, maxWidth: 560, margin: '0 auto 32px' }}
+          style={{ fontSize: 'clamp(14px,1.5vw,17px)', lineHeight: 1.75, color: C.body, maxWidth: 560, margin: '0 auto 32px' }}
         >
           From business websites to custom software and complete digital systems, we design and build solutions around the way your organisation works.
         </motion.p>
@@ -69,6 +67,19 @@ function ServicesHero() {
           </Link>
         </motion.div>
       </div>
+
+      <style>{`
+        .svc-hero-section {
+          padding-top: clamp(88px, 10vw, 120px);
+          padding-bottom: clamp(32px, 4vw, 56px);
+        }
+        @media (max-width: 860px) {
+          .svc-hero-section { padding-top: 88px; padding-bottom: 32px; }
+        }
+        @media (max-width: 480px) {
+          .svc-hero-section { padding-top: 80px; padding-bottom: 28px; }
+        }
+      `}</style>
     </section>
   )
 }

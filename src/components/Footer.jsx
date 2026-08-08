@@ -97,7 +97,7 @@ export default function Footer() {
       <div style={{ position: 'relative', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
         <div style={{
           maxWidth: maxW, margin: '0 auto',
-          padding: `clamp(40px,5.5vw,64px) ${gutter}`,
+          padding: `clamp(28px,4vw,48px) ${gutter}`,
           display: 'flex', alignItems: 'center',
           justifyContent: 'space-between',
           flexWrap: 'wrap', gap: 28,
@@ -160,7 +160,7 @@ export default function Footer() {
       {/* ── Main footer body ── */}
       <div style={{
         position: 'relative', maxWidth: maxW, margin: '0 auto',
-        padding: `clamp(48px,6vw,72px) ${gutter} 0`,
+        padding: `clamp(32px,4vw,52px) ${gutter} 0`,
       }}>
         <div className="footer-grid">
 
@@ -384,7 +384,7 @@ export default function Footer() {
 
       {/* ── Gradient divider ── */}
       <div style={{
-        position: 'relative', maxWidth: maxW, margin: '48px auto 0',
+        position: 'relative', maxWidth: maxW, margin: '28px auto 0',
         padding: `0 ${gutter}`,
       }}>
         <div style={{
@@ -394,7 +394,7 @@ export default function Footer() {
       </div>
 
       {/* ── Bottom bar ── */}
-      <div style={{ position: 'relative', maxWidth: maxW, margin: '0 auto', padding: `20px ${gutter} 28px` }}>
+      <div style={{ position: 'relative', maxWidth: maxW, margin: '0 auto', padding: `16px ${gutter} 22px` }}>
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 12 }}>
           <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.18)', fontFamily: F.body }}>
             © {new Date().getFullYear()} Anobyte Technologies Ltd. All rights reserved.
@@ -452,7 +452,7 @@ export default function Footer() {
         @media (max-width: 680px) {
           .footer-grid { grid-template-columns: 1fr 1fr; }
         }
-        @media (max-width: 420px) {
+        @media (max-width: 480px) {
           .footer-grid { grid-template-columns: 1fr; }
         }
       `}</style>

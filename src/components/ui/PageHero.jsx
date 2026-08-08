@@ -3,7 +3,7 @@ import { C, F, maxW, gutter } from '../../styles/tokens'
 
 export default function PageHero({ eyebrow, title, titleGrad, subtitle }) {
   return (
-    <section style={{ background: '#fff', padding: `clamp(96px,12vw,136px) 0 clamp(56px,7vw,88px)`, position: 'relative', overflow: 'hidden' }}>
+    <section className="page-hero-section" style={{ background: '#fff', position: 'relative', overflow: 'hidden' }}>
       {/* subtle grid */}
       <div className="bg-grid" style={{ position: 'absolute', inset: 0, opacity: 0.5 }} />
       {/* soft glow at top */}
@@ -18,11 +18,7 @@ export default function PageHero({ eyebrow, title, titleGrad, subtitle }) {
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            style={{
-              fontSize: 11, fontWeight: 700, fontFamily: F.head,
-              letterSpacing: '0.16em', textTransform: 'uppercase',
-              color: C.blue500, marginBottom: 18,
-            }}
+            style={{ fontSize: 11, fontWeight: 700, fontFamily: F.head, letterSpacing: '0.16em', textTransform: 'uppercase', color: C.blue500, marginBottom: 18 }}
           >
             {eyebrow}
           </motion.p>
@@ -31,12 +27,7 @@ export default function PageHero({ eyebrow, title, titleGrad, subtitle }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
-          style={{
-            fontFamily: F.head, fontWeight: 800,
-            fontSize: 'clamp(2.2rem,4.5vw,3.8rem)',
-            letterSpacing: '-0.04em', lineHeight: 1.1,
-            color: C.ink, marginBottom: subtitle ? 18 : 0,
-          }}
+          style={{ fontFamily: F.head, fontWeight: 800, fontSize: 'clamp(2rem,4.5vw,3.8rem)', letterSpacing: '-0.04em', lineHeight: 1.1, color: C.ink, marginBottom: subtitle ? 18 : 0 }}
         >
           {title}{titleGrad && <> <span className="tg">{titleGrad}</span></>}
         </motion.h1>
@@ -45,12 +36,25 @@ export default function PageHero({ eyebrow, title, titleGrad, subtitle }) {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.55, delay: 0.18 }}
-            style={{ fontSize: 17, lineHeight: 1.75, color: C.body, maxWidth: 560, margin: '0 auto' }}
+            style={{ fontSize: 'clamp(14px,1.5vw,17px)', lineHeight: 1.75, color: C.body, maxWidth: 560, margin: '0 auto' }}
           >
             {subtitle}
           </motion.p>
         )}
       </div>
+
+      <style>{`
+        .page-hero-section {
+          padding-top: clamp(88px, 10vw, 120px);
+          padding-bottom: clamp(32px, 4vw, 56px);
+        }
+        @media (max-width: 860px) {
+          .page-hero-section { padding-top: 88px; padding-bottom: 32px; }
+        }
+        @media (max-width: 480px) {
+          .page-hero-section { padding-top: 80px; padding-bottom: 28px; }
+        }
+      `}</style>
     </section>
   )
 }

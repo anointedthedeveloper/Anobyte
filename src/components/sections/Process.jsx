@@ -56,7 +56,7 @@ const steps = [
 export default function Process() {
   return (
     <Section bg="#fff">
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: 20 }}>
+      <div className="process-grid">
         {steps.map((s, i) => (
           <motion.div
             key={s.title}
@@ -95,6 +95,17 @@ export default function Process() {
           </motion.div>
         ))}
       </div>
+
+      <style>{`
+        .process-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+          gap: 20px;
+        }
+        @media (max-width: 680px) {
+          .process-grid { grid-template-columns: 1fr; }
+        }
+      `}</style>
     </Section>
   )
 }

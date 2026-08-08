@@ -308,15 +308,6 @@ export default function Projects() {
       <AnimatePresence mode="wait">
         <motion.div key={active} initial={{ opacity:0 }} animate={{ opacity:1 }} exit={{ opacity:0 }} transition={{ duration:0.18 }}
           className="proj-full-grid"
-          style={{
-            // 1 result: 2 cards on same row, auto-sized, left-aligned
-            // 2 results: 3 cards on same row, auto-sized, left-aligned
-            // 3+ results: normal 3-col grid
-            gridTemplateColumns: (filtered.length + 1) <= 3
-              ? `repeat(${filtered.length + 1}, minmax(0, 340px))`
-              : undefined,
-            justifyContent: (filtered.length + 1) <= 3 ? 'start' : undefined,
-          }}
         >
           {filtered.map((p,i)=><Card key={p.title} p={p} i={i}/>)}
           {centred

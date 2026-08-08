@@ -84,22 +84,16 @@ h1, h2, h3, h4, h5 { overflow-wrap: break-word; word-break: break-word; }
   /* Comfortable reading line-height on small screens */
   body { line-height: 1.7; }
 
-  /* Section vertical rhythm — tighter on mobile */
-  section { padding-top: clamp(40px,8vw,64px) !important; padding-bottom: clamp(40px,8vw,64px) !important; }
-
-  /* Headings scale down gracefully */
-  h1 { font-size: clamp(1.75rem, 7vw, 2.4rem) !important; }
-  h2 { font-size: clamp(1.4rem,  5.5vw, 2rem) !important; }
-  h3 { font-size: clamp(1.1rem,  4vw,   1.4rem) !important; }
+  /* Headings scale down gracefully — only apply to non-hero elements */
+  h2 { font-size: clamp(1.4rem, 5.5vw, 2rem) !important; }
+  h3 { font-size: clamp(1.1rem, 4vw,   1.4rem) !important; }
 
   /* Body copy — readable at 15px min on phones */
   p  { font-size: clamp(14px, 4vw, 16px); }
 }
 
 @media (max-width: 480px) {
-  /* Even tighter rhythm on smallest phones */
   body { font-size: 15px; }
-  h1   { font-size: clamp(1.6rem, 8vw, 2rem) !important; }
   h2   { font-size: clamp(1.25rem, 6vw, 1.6rem) !important; }
 
   /* Cards — full width, less padding */

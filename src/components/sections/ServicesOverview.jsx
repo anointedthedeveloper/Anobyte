@@ -188,9 +188,12 @@ export default function ServicesOverview() {
           .svc-intro-grid { grid-template-columns: repeat(2, 1fr); }
           .svc-full-grid  { grid-template-columns: repeat(2, 1fr); }
         }
+        @media (max-width: 560px) {
+          .svc-full-grid  { grid-template-columns: 1fr; }
+        }
         @media (max-width: 480px) {
           .svc-intro-grid { grid-template-columns: 1fr; }
-          .svc-full-grid  { grid-template-columns: 1fr; }
+          .svc-full-inner { padding: 16px 16px 20px; gap: 12px; }
         }      `}</style>
     </>
   )

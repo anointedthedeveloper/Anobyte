@@ -298,9 +298,8 @@ export default function Navbar() {
         }
         @media (max-width: 480px) {
           .nav-inner { padding: 0 12px; gap: 8px; }
-          /* Keep brand name visible but smaller — never hide it */
-          .nav-brand-name { font-size: 12px; }
-          .nav-logo-img   { height: 30px; }
+          .nav-brand-name { font-size: 12px; max-width: 160px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+          .nav-logo-img   { height: 28px; }
         }
 
         /* ── Large screen scaling ── */

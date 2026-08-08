@@ -266,7 +266,7 @@ export default function Contact() {
           position: relative;
           min-height: 100svh;
           display: flex;
-          align-items: center;
+          align-items: flex-start;
         }
         .contact-bg {
           position: absolute;
@@ -286,7 +286,10 @@ export default function Contact() {
           width: 100%;
           max-width: ${maxW};
           margin: 0 auto;
-          padding: clamp(80px, 10vw, 100px) ${gutter} clamp(40px, 5vw, 60px);
+          padding-top: 88px;
+          padding-bottom: clamp(28px, 4vw, 48px);
+          padding-left: ${gutter};
+          padding-right: ${gutter};
           display: grid;
           grid-template-columns: 340px 1fr;
           gap: clamp(24px, 4vw, 44px);
@@ -313,6 +316,7 @@ export default function Contact() {
         }
         @media (max-width: 560px) {
           .form-row { grid-template-columns: 1fr; }
+          .contact-inner { padding-top: 80px; }
         }
       `}</style>
     </section>
