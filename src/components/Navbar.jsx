@@ -1,7 +1,7 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useLayoutEffect, useRef, useCallback } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
-import { C, G, S, F } from '../styles/tokens'
+import { C, S } from '../styles/tokens'
 
 const NAV = [
   { label: 'Home',     to: '/' },
@@ -16,31 +16,52 @@ export default function Navbar() {
   const [scrolled, setScrolled]   = useState(false)
   const [open, setOpen]           = useState(false)
   const [indicator, setIndicator] = useState({ left: 0, width: 0, opacity: 0 })
+  const [hover, setHover]         = useState({ left: 0, width: 0, opacity: 0 })
+  const [ready, setReady]         = useState(false)
   const navRef                    = useRef(null)
   const loc                       = useLocation()
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 12)
+    fn()
     window.addEventListener('scroll', fn, { passive: true })
     return () => window.removeEventListener('scroll', fn)
   }, [])
 
   useEffect(() => setOpen(false), [loc.pathname])
 
-  // Measure active link for the sliding indicator
+  // Mobile drawer: lock page scroll, close on Escape
   useEffect(() => {
-    if (!navRef.current) return
-    const active = navRef.current.querySelector('.nav-link--active')
-    if (active) {
-      const navRect  = navRef.current.getBoundingClientRect()
-      const linkRect = active.getBoundingClientRect()
-      setIndicator({
-        left:    linkRect.left - navRect.left,
-        width:   linkRect.width,
-        opacity: 1,
-      })
-    }
-  }, [loc.pathname])
+    if (!open) return
+    const prev = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    const onKey = e => e.key === 'Escape' && setOpen(false)
+    window.addEventListener('keydown', onKey)
+    return () => { document.body.style.overflow = prev; window.removeEventListener('keydown', onKey) }
+  }, [open])
+
+  // Measure active link for the sliding indicator (re-measured on resize / font load)
+  const measure = useCallback(() => {
+    const nav = navRef.current
+    if (!nav) return
+    const active = nav.querySelector('.nav-link--active')
+    if (!active) { setIndicator(i => ({ ...i, opacity: 0 })); return }
+    setIndicator({ left: active.offsetLeft, width: active.offsetWidth, opacity: 1 })
+  }, [])
+
+  useLayoutEffect(() => {
+    measure()
+    const raf = requestAnimationFrame(() => setReady(true))
+    window.addEventListener('resize', measure)
+    document.fonts?.ready.then(measure)
+    return () => { cancelAnimationFrame(raf); window.removeEventListener('resize', measure) }
+  }, [loc.pathname, measure])
+
+  const onLinkEnter = e => {
+    const el = e.currentTarget
+    setHover({ left: el.offsetLeft, width: el.offsetWidth, opacity: 1 })
+  }
+  const onNavLeave = () => setHover(h => ({ ...h, opacity: 0 }))
 
   const isActive = to => to === '/' ? loc.pathname === '/' : loc.pathname.startsWith(to)
 
@@ -52,13 +73,14 @@ export default function Navbar() {
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
         style={{
           position: 'fixed', top: 0, left: 0, right: 0, zIndex: 100,
-          background: scrolled ? 'rgba(255,255,255,0.97)' : 'rgba(255,255,255,0.9)',
-          backdropFilter: 'blur(20px)',
-          WebkitBackdropFilter: 'blur(20px)',
+          background: scrolled || open ? 'rgba(255,255,255,0.88)' : 'rgba(255,255,255,0.6)',
+          backdropFilter: 'saturate(180%) blur(18px)',
+          WebkitBackdropFilter: 'saturate(180%) blur(18px)',
           borderBottom: `1px solid ${scrolled ? C.border : 'rgba(229,232,242,0.5)'}`,
           boxShadow: scrolled ? S.nav : 'none',
           transition: 'background 0.3s, border-color 0.3s, box-shadow 0.3s',
         }}
+        data-scrolled={scrolled}
       >
         <div className="nav-inner">
 
@@ -78,12 +100,20 @@ export default function Navbar() {
           </Link>
 
           {/* ── Desktop nav ── */}
-          <nav ref={navRef} className="desktop-nav nav-links">
+          <nav ref={navRef} className="desktop-nav nav-links" onMouseLeave={onNavLeave} aria-label="Primary">
+            {/* Soft pill that follows the cursor */}
+            <motion.span
+              className="nav-hover"
+              initial={false}
+              animate={{ left: hover.left, width: hover.width, opacity: hover.opacity }}
+              transition={{ type: 'spring', stiffness: 500, damping: 40, opacity: { duration: 0.15 } }}
+            />
             {/* Sliding background pill — moves to active item */}
             <motion.span
               className="nav-indicator"
+              initial={false}
               animate={{ left: indicator.left, width: indicator.width, opacity: indicator.opacity }}
-              transition={{ type: 'spring', stiffness: 380, damping: 36 }}
+              transition={ready ? { type: 'spring', stiffness: 380, damping: 36 } : { duration: 0 }}
             />
             {NAV.map(l => {
               const on = isActive(l.to)
@@ -91,6 +121,9 @@ export default function Navbar() {
                 <Link
                   key={l.to}
                   to={l.to}
+                  onMouseEnter={onLinkEnter}
+                  onFocus={onLinkEnter}
+                  aria-current={on ? 'page' : undefined}
                   className={`nav-link${on ? ' nav-link--active' : ''}`}
                 >
                   {l.label}
@@ -110,18 +143,10 @@ export default function Navbar() {
           <button
             className="mobile-btn"
             onClick={() => setOpen(v => !v)}
-            aria-label="Toggle menu"
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            aria-expanded={open}
           >
-            <motion.span
-              animate={{ rotate: open ? 45 : 0 }}
-              transition={{ duration: 0.2 }}
-              style={{ display: 'flex' }}
-            >
-              {open
-                ? <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-                : <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
-              }
-            </motion.span>
+            <span className={`burger${open ? ' burger--open' : ''}`}><i /><i /><i /></span>
           </button>
 
         </div>
@@ -131,6 +156,16 @@ export default function Navbar() {
       <AnimatePresence>
         {open && (
           <motion.div
+            key="backdrop"
+            className="mob-backdrop"
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onClick={() => setOpen(false)}
+          />
+        )}
+        {open && (
+          <motion.div
+            key="drawer"
             className="mob-drawer"
             initial={{ opacity: 0, y: -16, scale: 0.95 }}
             animate={{ opacity: 1,  y: 0,   scale: 1    }}
@@ -172,6 +207,7 @@ export default function Navbar() {
         .nav-inner {
           width: 100%;
           height: 72px;
+          transition: height 0.3s cubic-bezier(0.22, 1, 0.36, 1);
           display: flex;
           align-items: center;
           justify-content: space-between;
@@ -180,6 +216,10 @@ export default function Navbar() {
           padding: 0 clamp(16px, 3.5vw, 56px);
           box-sizing: border-box;
         }
+
+        [data-scrolled="true"] .nav-inner { height: 62px; }
+        [data-scrolled="true"] .nav-logo-img { height: 34px; }
+        .nav-logo-img { transition: height 0.3s cubic-bezier(0.22, 1, 0.36, 1); }
 
         /* ── Logo ── */
         .nav-logo-link {
@@ -213,6 +253,11 @@ export default function Navbar() {
           gap: 2px;
         }
 
+        .nav-hover {
+          position: absolute; top: 0; bottom: 0; border-radius: 10px;
+          background: ${C.blue50}; pointer-events: none; z-index: 0;
+        }
+
         /* Sliding pill background — sits behind the active link */
         .nav-indicator {
           position: absolute;
@@ -239,8 +284,11 @@ export default function Navbar() {
           white-space: nowrap;
           transition: color 0.2s;
         }
-        .nav-link:hover {
+        .nav-link:hover, .nav-link:focus-visible {
           color: ${C.ink};
+        }
+        .nav-link:focus-visible, .nav-cta:focus-visible, .mobile-btn:focus-visible, .mob-link:focus-visible {
+          outline: 2px solid ${C.blue500}; outline-offset: 2px;
         }
         /* Active — white text over the sliding pill */
         .nav-link--active {
@@ -287,6 +335,27 @@ export default function Navbar() {
           border-color: ${C.border};
         }
 
+        /* Animated hamburger */
+        .burger { position: relative; width: 20px; height: 14px; display: block; }
+        .burger i {
+          position: absolute; left: 0; width: 100%; height: 2px; border-radius: 2px;
+          background: currentColor; transition: transform 0.3s cubic-bezier(0.22,1,0.36,1), opacity 0.2s, top 0.3s;
+        }
+        .burger i:nth-child(1) { top: 0; }
+        .burger i:nth-child(2) { top: 6px; }
+        .burger i:nth-child(3) { top: 12px; }
+        .burger--open i:nth-child(1) { top: 6px; transform: rotate(45deg); }
+        .burger--open i:nth-child(2) { opacity: 0; }
+        .burger--open i:nth-child(3) { top: 6px; transform: rotate(-45deg); }
+
+        .mob-backdrop {
+          position: fixed; inset: 0; z-index: 98;
+          background: rgba(11,14,42,0.28); backdrop-filter: blur(3px);
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .nav-inner, .nav-logo-img, .burger i { transition: none; }
+        }
+
         /* ── Breakpoint: hide desktop nav on small screens ── */
         .desktop-nav { display: flex !important; }
         @media (max-width: 860px) {
@@ -318,7 +387,7 @@ export default function Navbar() {
         /* ── Mobile drawer ── */
         .mob-drawer {
           position: fixed;
-          top: 80px; left: 12px; right: 12px;
+          top: 72px; left: 12px; right: 12px;
           z-index: 99;
           background: rgba(255,255,255,0.99);
           backdrop-filter: blur(24px);
