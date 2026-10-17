@@ -10,7 +10,7 @@ export default function ProjectsPage() {
         eyebrow="Work"
         title="Selected"
         titleGrad="projects"
-        subtitle="A sample of products we've designed, built, and shipped for our clients."
+        subtitle="Live products from our GitHub — real deployments across AI, developer tools, business systems, e-commerce and education."
       />
       <Projects />
       <HomeCTA />
